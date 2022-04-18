@@ -12,6 +12,23 @@ package excalibur.porsi2022;
  * Informatika - Universitas Sanata Dharma
  */
 public class Stock {
-    private Product[] product;
+    private Product product;
     private int amount;
+    
+    public Stock(Product product, int amount){
+        this.product=product;
+        this.amount=amount;
+    }
+    
+    public void addAmount(int add){
+        amount+=add;
+    }
+    
+    public void reduceAmount(int reduce){
+        amount-=reduce;
+    }
+    
+    public Product getProduct(){
+        return product;
+    }
 }

@@ -19,4 +19,12 @@ public class Transaction {
     private int total;
     private boolean isPaid;
     private LocalDate date;
+    
+    public Transaction(){
+        
+    }
+    
+    public String getId(){
+        return id;
+    }
 }

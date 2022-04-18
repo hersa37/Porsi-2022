@@ -5,6 +5,8 @@
 
 package excalibur.porsi2022;
 
+import java.util.HashMap;
+
 /**
  *
  * @author echa
@@ -12,6 +14,16 @@ package excalibur.porsi2022;
  * Informatika - Universitas Sanata Dharma
  */
 public class Accounting {
-    private Transaction[] transactions;
+    private final HashMap<String,Transaction> transactions;
     
+    
+    public Accounting(){
+        transactions=new HashMap<>();
+    }
+    
+    public void addTransaction(Transaction transaction){
+        transactions.put(transaction.getId(), transaction);
+    }
+    
+    private int 
 }

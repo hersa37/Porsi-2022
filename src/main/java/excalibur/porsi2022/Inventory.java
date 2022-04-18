@@ -13,4 +13,33 @@ package excalibur.porsi2022;
  */
 public class Inventory {
     private Stock[] stock;
+    
+    public Inventory(){
+        stock=new Stock[ProductType.values().length];
+        for(int i=0;i<stock.length;i++){
+            stock[i]=new Stock(new Product(ProductType.values()[i]),0);
+        }
+    }
+    
+    public Stock[] getStock(){
+        return stock;
+    }
+    
+    public void addStock(ProductType product, int amount){
+        for(Stock s:stock) {
+            if(s.getProduct().getType()==product) {
+                s.addAmount(amount);
+            }
+        }
+    }
+    
+    public void reduceStock(ProductType product, int amount){
+        for(Stock s:stock){
+            if(s.getProduct().getType()==product){
+                s.reduceAmount(amount);
+            }
+        }
+    }
+    
+
 }

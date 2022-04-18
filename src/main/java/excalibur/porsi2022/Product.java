@@ -15,10 +15,16 @@ import java.io.Serializable;
  */
 public class Product implements Serializable {
     
-    private String id;
     private ProductType type;
     private String unit;
     private int price;
     
+    public Product(ProductType type){
+        this.type=type;
+        
+    }
     
+    public ProductType getType(){
+        return type;
+    }
 }
