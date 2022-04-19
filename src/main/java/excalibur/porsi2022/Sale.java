@@ -35,6 +35,6 @@ public class Sale extends Transaction{
     }
     
     private String getUniqueID(){
-        return "pur_"+String.format("%05d", uniqueID++);
+        return "sale_"+String.format("%05d", uniqueID++);
     }
 }
