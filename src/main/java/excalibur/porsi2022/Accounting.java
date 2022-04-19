@@ -23,6 +23,7 @@ public class Accounting {
     
     public void addTransaction(Transaction transaction){
         transactions.put(transaction.getId(), transaction);
+        System.out.println("hai");
     }
     
 }
