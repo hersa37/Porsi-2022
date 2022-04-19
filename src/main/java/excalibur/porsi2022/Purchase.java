@@ -15,7 +15,7 @@ import java.time.LocalDate;
  */
 public class Purchase extends Transaction {
     private Supplier supplier;
-    protected static int uniqueID=0;
+    private static int uniqueID=0;
     
     public Purchase(Supplier supplier, TransactionDetail[] products, int total, int paid){
         this.supplier=supplier;

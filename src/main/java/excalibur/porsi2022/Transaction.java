@@ -52,6 +52,10 @@ public class Transaction {
     public boolean isPaid() {
         return total==paid;
     }
+    
+    public int getPaymentRemain(){
+        return total-paid;
+    }
 
     public LocalDate getDate() {
         return date;
