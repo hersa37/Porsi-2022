@@ -13,6 +13,7 @@ package excalibur.porsi2022;
  */
 public class Inventory {
     private Stock[] stock;
+    private Product[] products;
     
     public Inventory(){
         stock=new Stock[ProductType.values().length];
@@ -41,5 +42,8 @@ public class Inventory {
         }
     }
     
+    public Product[] getProducts(){
+        return products;
+    }
 
 }
