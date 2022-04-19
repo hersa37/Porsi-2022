@@ -12,6 +12,7 @@ package excalibur.porsi2022;
  * Informatika - Universitas Sanata Dharma
  */
 public class Inventory {
+    private Product product;
     private Stock[] stock;
     private Product[] products;
     
@@ -44,6 +45,15 @@ public class Inventory {
     
     public Product[] getProducts(){
         return products;
+    }
+    
+    public Product checkStock (String id){
+//        for(int i=0; i<products.length;i++){
+//            if(product.getProduct_id().equalsIgnoreCase(id)){
+//                return 
+//            }
+//        }
+    return null;
     }
 
 }

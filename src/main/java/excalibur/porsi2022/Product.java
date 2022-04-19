@@ -15,6 +15,7 @@ import java.io.Serializable;
  */
 public class Product implements Serializable {
     
+    private String product_id;
     private ProductType type;
     private String unit;
     private int price;
@@ -27,4 +28,29 @@ public class Product implements Serializable {
     public ProductType getType(){
         return type;
     }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
 }
