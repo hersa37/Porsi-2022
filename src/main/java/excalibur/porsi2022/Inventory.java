@@ -41,5 +41,11 @@ public class Inventory {
         }
     }
     
+    public void checkSttok(String id){
+    
+    }
+    
+    public void checkSttok(ProductType type){
 
+    }
 }
