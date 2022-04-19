@@ -37,9 +37,9 @@ public class FileManagement {
         
     }
     
-    public static Object read(){
+    public static Object read(String fileName){
         try{
-            FileInputStream f=new FileInputStream(new File("output.txt"));
+            FileInputStream f=new FileInputStream(new File(fileName));
             ObjectInputStream o=new ObjectInputStream(f);
             
             Object object=(Object) o.readObject();

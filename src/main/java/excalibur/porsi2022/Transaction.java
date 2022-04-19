@@ -14,17 +14,59 @@ import java.time.LocalDate;
  * Informatika - Universitas Sanata Dharma
  */
 public class Transaction {
-    private String id;
-    private TransactionDetail[] products;
-    private int total;
-    private boolean isPaid;
-    private LocalDate date;
+    protected String id;
+    protected TransactionDetail[] products;
+    protected int total;
+    protected int paid;
+    protected LocalDate date;
+
     
-    public Transaction(){
+    protected Transaction(){
+        
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id=id;
+    }
+
+    public TransactionDetail[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(TransactionDetail[] products) {
+        this.products=products;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total=total;
+    }
+
+    public boolean isPaid() {
+        return total==paid;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date=date;
+    }
+    
+    public void addPayment(int payment){
+        if(paid<total){
+            paid+=payment;
+        } else System.out.println("Paid in total");
         
     }
     
-    public String getId(){
-        return id;
-    }
+    
 }

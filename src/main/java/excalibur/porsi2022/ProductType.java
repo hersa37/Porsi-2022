@@ -16,7 +16,5 @@ public enum ProductType {
     BERAS,
     TERIGU,
     TELUR,
-    GULA,
-    SANTAN
-    
+    GULA  
 }
