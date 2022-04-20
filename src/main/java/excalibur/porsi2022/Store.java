@@ -5,55 +5,33 @@
  */
 package excalibur.porsi2022;
 
+import excalibur.porsi2022.accounting.people.*;
+import excalibur.porsi2022.accounting.*;
+import excalibur.porsi2022.accounting.Purchase;
+import excalibur.porsi2022.inventory.Inventory;
+import excalibur.porsi2022.inventory.Product;
+
 /**
  *
  * @author asus
  */
 public class Store {
-    private String owner;
-    private Accounting books;
+    private Owner owner;
+    private Accounting accountingBook;
     private Inventory inventory;
     private Customer[] customers;
-    private String booksFileName;
+    private String accountingBookFileName;
     private String inventoryFileName;
     
     public Store(){
         
     }
     
-    public void setOwner(String owner){
-        this.owner=owner;
+    public void sell(Purchase purchase){
+        accountingBook.addPurchase(purchase);
+        for(int i=0;i<purchase.getProducts().length;i++){
+            inventory.reduceStock(purchase.getProducts()[i]);
+        }
     }
-    
-    public String getOwner(){
-        return owner;
-    }
-    
-    public void setBooks(Accounting books){
-        this.books=books;
-    }
-    
-    public Accounting getBooks(){
-        return books;
-    }
-    
-    public void setBooksFileName(String booksFileName){
-        this.booksFileName=booksFileName;
-    }
-    
-    public String getBooksFileName(){
-        return booksFileName;
-    }
-    
-    public void setInventoryFileName(String inventoryFileName){
-        this.inventoryFileName=inventoryFileName;
-    }
-    
-    public String getInventoryFileName(){
-        return inventoryFileName;
-    }
-    
-    public void saveFile(String fileName){
-        
-    }
+   
 }

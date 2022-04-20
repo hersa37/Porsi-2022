@@ -3,8 +3,10 @@
  *  Do not use without permission
  */
 
-package excalibur.porsi2022;
+package excalibur.porsi2022.accounting;
 
+import excalibur.porsi2022.inventory.Inventory;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.Map.Entry;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class Accounting {
+public class Accounting  implements Serializable{
     private HashMap<String,Purchase> purchase;
     private HashMap<String,Sale> sale;
     
@@ -45,6 +47,8 @@ public class Accounting {
     public void addPurchase(Purchase purchase){
         this.purchase.put(purchase.getId(), purchase);
     }
+    
+    
         
     public Purchase getPurchaseAt(String purchase_id){
         return purchase.get(purchase_id);
@@ -52,6 +56,7 @@ public class Accounting {
     
     public void addSale(Sale sale){
         this.sale.put(sale.getId(), sale);
+        
     }
     
     public Sale getSaleAt(String sale_id){

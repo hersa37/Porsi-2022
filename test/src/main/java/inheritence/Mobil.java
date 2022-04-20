@@ -3,7 +3,7 @@
  *  Do not use without permission
  */
 
-package excalibur.porsi2022;
+package inheritence;
 
 /**
  *
@@ -11,6 +11,6 @@ package excalibur.porsi2022;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class Gula extends Product {
+public class Mobil extends Kendaraan{
 
 }

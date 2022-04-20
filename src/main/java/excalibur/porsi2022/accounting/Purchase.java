@@ -3,10 +3,11 @@
  *  Do not use without permission
  */
 
-package excalibur.porsi2022;
+package excalibur.porsi2022.accounting;
 
+import excalibur.porsi2022.accounting.people.Supplier;
 import java.time.LocalDate;
-
+import excalibur.porsi2022.inventory.*;
 /**
  *
  * @author echa
@@ -17,13 +18,11 @@ public class Purchase extends Transaction {
     private Supplier supplier;
     private static int uniqueID=0;
     
-    public Purchase(Supplier supplier, TransactionDetail[] products, int total, int paid){
-        this.supplier=supplier;
-        this.products=products;
-        this.total=total;
-        this.paid=paid;
+    public Purchase(Supplier supplier, Product[] products, int paid){
+        super(products, paid);
+        this.supplier=supplier;        
         this.date=LocalDate.now();
-        this.id=getUniqueID();
+        id=getUniqueID();
     }
 
     public Supplier getSupplier() {
@@ -36,6 +35,16 @@ public class Purchase extends Transaction {
     
     private String getUniqueID(){
         return "pur_"+String.format("%05d", uniqueID++);
+    }
+    
+    @Override
+    public String toString(){
+        return "{ID: "+id
+                +"; Supplier: "+supplier
+                +"; Products: "+super.toString(products)
+                +"; Total payment: "+totalCost
+                +"; Total paid: "+paid
+                +"}";
     }
     
 }
