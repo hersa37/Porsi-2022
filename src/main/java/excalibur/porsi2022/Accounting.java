@@ -58,7 +58,7 @@ public class Accounting {
         return sale.get(sale_id);
     }
     
-    public List getPurchaseUnpaid(){
+    public List<Purchase> getPurchaseUnpaid(){
         List<Purchase> purchaseUnpaid=new ArrayList<>();
         for(Entry<String, Purchase> unpaid:purchase.entrySet()){
             if(!unpaid.getValue().isPaid()){
@@ -68,7 +68,7 @@ public class Accounting {
         return purchaseUnpaid;
     }
     
-    public List getSaleUnpaid(){
+    public List<Sale> getSaleUnpaid(){
         List<Sale> saleUnpaid=new ArrayList<>();
         for(Entry<String, Sale> unpaid:sale.entrySet()){
             if(!unpaid.getValue().isPaid()){
@@ -96,5 +96,18 @@ public class Accounting {
             }
         }
         return sUnpaid;
+    }
+    
+    public String toString(List list){
+        String print="";
+        for(Object temp:list){
+            print+=temp.toString()+"\n";
+        }
+        return print;
+    }
+    
+    public String toString(HashMap<String, Transaction> hashmap){
+        String print="";
+        return print;
     }
 }

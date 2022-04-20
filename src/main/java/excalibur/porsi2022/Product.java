@@ -14,27 +14,10 @@ import java.io.Serializable;
  * Informatika - Universitas Sanata Dharma
  */
 public class Product implements Serializable {
-    
-    private String product_id;
-    private ProductType type;
+
     private String unit;
     private int price;
     
-    public Product(ProductType type){
-        this.type=type; 
-    }
-    
-    public ProductType getType(){
-        return type;
-    }
-    
-    public void setProduct_id(String product_id){
-        this.product_id = product_id;
-    }
-    
-    public String getProduct_id(){
-        return product_id;
-    }
     
     public void setUnit(String unit){
         this.unit = unit;

@@ -12,11 +12,13 @@ package excalibur.porsi2022;
 public class Store {
     private String owner;
     private Accounting books;
+    private Inventory inventory;
+    private Customer[] customers;
     private String booksFileName;
     private String inventoryFileName;
     
     public Store(){
-    
+        
     }
     
     public void setOwner(String owner){
@@ -49,5 +51,9 @@ public class Store {
     
     public String getInventoryFileName(){
         return inventoryFileName;
+    }
+    
+    public void saveFile(String fileName){
+        
     }
 }

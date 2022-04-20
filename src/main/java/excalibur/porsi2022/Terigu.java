@@ -11,10 +11,6 @@ package excalibur.porsi2022;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public enum ProductType {
-    MINYAK,
-    BERAS,
-    TERIGU,
-    TELUR,
-    GULA  
+public class Terigu extends Product{
+
 }

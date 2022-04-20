@@ -49,7 +49,7 @@ public class Inventory {
     
     public Product checkStock (String id){
         for(int i=0; i<products.length;i++){
-            if(product.getProduct_id().equalsIgnoreCase(id)){
+            if(product.getProductId().equalsIgnoreCase(id)){
             }
         }
     return null;
