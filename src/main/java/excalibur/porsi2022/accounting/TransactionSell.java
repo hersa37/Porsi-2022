@@ -32,4 +32,6 @@ public class TransactionSell extends Transaction{
     public String toString(){
         return super.toString("Supplier", products);
     }
+    
+    
 }

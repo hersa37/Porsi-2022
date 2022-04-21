@@ -17,6 +17,7 @@ public class Products_Buy extends Inventory{
     
     public Products_Buy(){
         super();
+        
     }
     
     @Override

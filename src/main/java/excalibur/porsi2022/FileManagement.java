@@ -27,6 +27,7 @@ public class FileManagement {
             ObjectOutputStream o=new ObjectOutputStream(f);
             o.writeObject(object);
             
+            System.out.println("File saved as "+"\""+fileName+"\"");
             o.close();
             f.close();
         } catch(FileNotFoundException e){
@@ -39,10 +40,10 @@ public class FileManagement {
     
     public static Object read(String fileName){
         try{
-            FileInputStream f=new FileInputStream(new File(fileName));
+            FileInputStream f=new FileInputStream(fileName);
             ObjectInputStream o=new ObjectInputStream(f);
             
-            Object object=(Object) o.readObject();
+            Object object= o.readObject();
             return object;
         } catch(FileNotFoundException e){
             System.out.println("File not found");

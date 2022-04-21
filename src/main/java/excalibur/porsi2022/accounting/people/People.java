@@ -60,7 +60,7 @@ public class People implements Serializable{
     @Override
     public String toString(){
         return "{Type: "+this.getClass().getSimpleName()
-                + "ID: "+id
+                + "; ID: "+id
                 +"; Name: "+name
                 +"; Phone: "+phone
                 +"; Address: "+address

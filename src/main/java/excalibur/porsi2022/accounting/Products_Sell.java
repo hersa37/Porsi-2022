@@ -14,7 +14,7 @@ import excalibur.porsi2022.inventory.sell.*;
  * Informatika - Universitas Sanata Dharma
  */
 public class Products_Sell extends Inventory {
-
+    
     public Products_Sell(){
         stock=new Product[ITEM_TYPES];
         stock[0]=new BerasSell(0);

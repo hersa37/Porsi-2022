@@ -5,7 +5,6 @@
 
 package excalibur.porsi2022.accounting;
 
-import excalibur.porsi2022.inventory.Inventory;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,9 +45,7 @@ public class Accounting  implements Serializable{
     
     public void addPurchase(TransactionBuy purchase){
         this.purchase.put(purchase.getId(), purchase);
-    }
-    
-    
+    }   
         
     public TransactionBuy getPurchaseAt(String purchase_id){
         return purchase.get(purchase_id);
