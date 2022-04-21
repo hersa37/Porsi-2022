@@ -30,9 +30,11 @@ public class Porsi2022 {
         switch(inp) {
             case 1: 
                 do{
+                    do{
                     System.out.print("Nama toko:");
-                    String namaToko=input.next();
-                    toko=(Store) FileManagement.read(namaToko);
+                    String namaToko=input.next();                    
+                        toko=(Store) FileManagement.read(namaToko);
+                    } while(toko==null);
                     System.out.println(toko);
                     System.out.println("\nApakah benar? (y/n)");
                 }while(!input.next().equals("y"));
