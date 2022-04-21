@@ -32,6 +32,7 @@ public class Porsi2022 {
                         System.out.print("Nama toko:");
                         String namaToko=input.next();                    
                         toko=(Store) FileManagement.read(namaToko);
+<<<<<<< HEAD
                         if(toko==null){
                             System.out.println("Buat toko baru? (y/n)");
                             if(input.next().equals("y")){
@@ -45,6 +46,12 @@ public class Porsi2022 {
                                 }
                             }
                         }                        
+=======
+                        System.out.println("Buat toko baru? (y/n)");
+                        if(input.next().equals("y")){
+                            toko=tokoBaru();
+                        }
+>>>>>>> Hersa
                     } while(toko==null);
                     System.out.println(toko);
                     System.out.println("\nApakah benar? (y/n)");
@@ -290,6 +297,7 @@ public class Porsi2022 {
         return new Store(storeName,pemilik);
     }
     
+<<<<<<< HEAD
     public static void dataCustomer(Store toko){
         Scanner input=new Scanner(System.in);
         int inp;
@@ -362,4 +370,6 @@ public class Porsi2022 {
         
     }
     
+=======
+>>>>>>> Hersa
 }
