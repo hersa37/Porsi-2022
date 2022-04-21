@@ -31,26 +31,20 @@ public class Porsi2022 {
             case 1: 
                 do{
                     do{
-                    System.out.print("Nama toko:");
-                    String namaToko=input.next();                    
+                        System.out.print("Nama toko:");
+                        String namaToko=input.next();                    
                         toko=(Store) FileManagement.read(namaToko);
+                        System.out.println("Buat toko baru? (y/n)");
+                        if(input.next().equals("y")){
+                            toko=tokoBaru();
+                        }
                     } while(toko==null);
                     System.out.println(toko);
                     System.out.println("\nApakah benar? (y/n)");
                 }while(!input.next().equals("y"));
                 break;
             case 2:
-                System.out.println("Nama toko:");
-                String storeName=input.next();
-                System.out.println("Nama pemilik");
-                String name=input.next();
-                System.out.print("");
-                System.out.println("No. telp emilik");
-                String phone=input.next();
-                System.out.println("Alamat pemilik");
-                String address=input.next();
-                Owner pemilik=new Owner(name, phone, address);
-                toko=new Store(storeName,pemilik);
+                toko=tokoBaru();
                 FileManagement.write(toko, toko.getFileName());
         }
         
@@ -268,6 +262,23 @@ public class Porsi2022 {
         System.out.println("");
         System.out.println("Harga jual");
         System.out.println(toko.getSellPrice());
+    }
+    
+    public static Store tokoBaru(){
+        Scanner input=new Scanner(System.in);
+        
+        System.out.println("Nama toko:");
+        String storeName=input.next();
+        System.out.println("Nama pemilik");
+        String name=input.next();
+        System.out.print("");
+        System.out.println("No. telp emilik");
+        String phone=input.next();
+        System.out.println("Alamat pemilik");
+        String address=input.next();
+        Owner pemilik=new Owner(name, phone, address);
+        
+        return new Store(storeName,pemilik);
     }
     
 }
