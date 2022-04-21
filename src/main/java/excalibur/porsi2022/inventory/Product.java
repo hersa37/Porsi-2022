@@ -5,6 +5,7 @@
 
 package excalibur.porsi2022.inventory;
 
+import excalibur.porsi2022.accounting.LocaleFormatting;
 import java.io.Serializable;
 
 /**
@@ -14,15 +15,25 @@ import java.io.Serializable;
  * Informatika - Universitas Sanata Dharma
  */
 public class Product implements Serializable {
-
+    
+    private String itemType; 
     private String unit;
     private int pricePerUnit;
     private int amount;
     
-    protected Product(String unit, int price, int amount){
+    protected Product(String itemType, String unit, int price, int amount){
+        this.itemType=itemType;
         this.unit=unit;
         this.pricePerUnit=price;
         this.amount=amount;
+    }
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType=itemType;
     }
     
     public void setUnit(String unit){
@@ -63,12 +74,21 @@ public class Product implements Serializable {
         return pricePerUnit*amount;
     }
     
+
     @Override
     public String toString(){
-        return "{ Barang: "+this.getClass().getSimpleName()
-                +"; Harga"+unit+": "+pricePerUnit
-                +"; Jumlah: "+amount
-                +"; Harga total: "+getTotalPrice()
+        return "[ Barang :\t"+this.getItemType()+"\t"
+                +"; Harga"+unit+":\t"+LocaleFormatting.currency(pricePerUnit)
+                +"; Jumlah :\t"+amount
+                +"; Harga total :\t"+LocaleFormatting.currency(getTotalPrice())
                 +"]";
     }
+    public String toStringNoLabel(){
+        return this.getItemType()+"\t"+LocaleFormatting.currency(pricePerUnit)
+                +"\t"+amount+"\t"
+                +LocaleFormatting.currency(getTotalPrice());
+    }
+                
+//        return "Barang\t"+"Harga/unit\t"+"Jumlah\t"+"Harga total\t"
+                
 }

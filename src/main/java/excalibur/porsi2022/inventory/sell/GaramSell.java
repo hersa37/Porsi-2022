@@ -5,7 +5,7 @@
 
 package excalibur.porsi2022.inventory.sell;
 
-import excalibur.porsi2022.inventory.Product;
+import excalibur.porsi2022.inventory.buy.GaramBuy;
 
 /**
  *
@@ -13,9 +13,10 @@ import excalibur.porsi2022.inventory.Product;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class GaramSell extends Product{
+public class GaramSell extends GaramBuy{
     
     public GaramSell(int amount){
-        super("/kg", 4500, amount);
+        super(amount);
+        super.setPricePerUnit(4500);
     }
 }

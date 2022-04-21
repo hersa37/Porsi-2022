@@ -16,6 +16,6 @@ import excalibur.porsi2022.inventory.Product;
 public class GulaBuy extends Product {
 
         public GulaBuy(int amount){
-            super("/kg", 11000, amount);
+            super("Gula","/kg", 11000, amount);
         }
 }

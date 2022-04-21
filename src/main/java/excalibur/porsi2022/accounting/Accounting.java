@@ -18,8 +18,8 @@ import java.util.Map.Entry;
  * Informatika - Universitas Sanata Dharma
  */
 public class Accounting  implements Serializable{
-    private HashMap<String,Purchase> purchase;
-    private HashMap<String,Sale> sale;
+    private HashMap<String,TransactionBuy> purchase;
+    private HashMap<String,TransactionSell> sale;
     
     
     public Accounting(){
@@ -27,45 +27,45 @@ public class Accounting  implements Serializable{
         sale=new HashMap<>();
     }
 
-    public HashMap<String, Purchase> getPurchase() {
+    public HashMap<String, TransactionBuy> getPurchase() {
         return purchase;
     }
 
-    public void setPurchase(HashMap<String, Purchase> purchase) {
+    public void setPurchase(HashMap<String, TransactionBuy> purchase) {
         this.purchase=purchase;
     }
 
-    public HashMap<String, Sale> getSale() {
+    public HashMap<String, TransactionSell> getSale() {
         return sale;
     }
 
-    public void setSale(HashMap<String, Sale> sale) {
+    public void setSale(HashMap<String, TransactionSell> sale) {
         this.sale=sale;
     }
     
     
-    public void addPurchase(Purchase purchase){
+    public void addPurchase(TransactionBuy purchase){
         this.purchase.put(purchase.getId(), purchase);
     }
     
     
         
-    public Purchase getPurchaseAt(String purchase_id){
+    public TransactionBuy getPurchaseAt(String purchase_id){
         return purchase.get(purchase_id);
     }
     
-    public void addSale(Sale sale){
+    public void addSale(TransactionSell sale){
         this.sale.put(sale.getId(), sale);
         
     }
     
-    public Sale getSaleAt(String sale_id){
+    public TransactionSell getSaleAt(String sale_id){
         return sale.get(sale_id);
     }
     
-    public List<Purchase> getPurchaseUnpaid(){
-        List<Purchase> purchaseUnpaid=new ArrayList<>();
-        for(Entry<String, Purchase> unpaid:purchase.entrySet()){
+    public List<TransactionBuy> getPurchaseUnpaid(){
+        List<TransactionBuy> purchaseUnpaid=new ArrayList<>();
+        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
             if(!unpaid.getValue().isPaid()){
                 purchaseUnpaid.add(unpaid.getValue());
             }
@@ -73,9 +73,9 @@ public class Accounting  implements Serializable{
         return purchaseUnpaid;
     }
     
-    public List<Sale> getSaleUnpaid(){
-        List<Sale> saleUnpaid=new ArrayList<>();
-        for(Entry<String, Sale> unpaid:sale.entrySet()){
+    public List<TransactionSell> getSaleUnpaid(){
+        List<TransactionSell> saleUnpaid=new ArrayList<>();
+        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
             if(!unpaid.getValue().isPaid()){
                 saleUnpaid.add(unpaid.getValue());
             }
@@ -85,7 +85,7 @@ public class Accounting  implements Serializable{
     
     public int getPUnpaidAmount(){
         int pUnpaid=0;
-        for(Entry<String, Purchase> unpaid:purchase.entrySet()){
+        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
             if(unpaid.getValue().isPaid()){
                 pUnpaid+=unpaid.getValue().getPaymentRemain();
             }
@@ -95,7 +95,7 @@ public class Accounting  implements Serializable{
     
     public int getSUnpaidAmount(){
         int sUnpaid=0;
-        for(Entry<String, Sale> unpaid:sale.entrySet()){
+        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
             if(unpaid.getValue().isPaid()){
                 sUnpaid+=unpaid.getValue().getPaymentRemain();
             }
@@ -103,16 +103,38 @@ public class Accounting  implements Serializable{
         return sUnpaid;
     }
     
-    public String toString(List list){
+    @Override
+    public String toString(){
+        String print="Daftar Transaksi\n";
+        print+="Purcase list:";
+        for(String key:purchase.keySet()){
+            print+="\n"+key+":"+purchase.get(key).toString();
+        }
+        print+="\n\n";        
+        print+="Sale list:";
+        for(String key:sale.keySet()){
+            print+="\nID: "+key+":\n"+sale.get(key).toString();
+        }
+//        +"\n"
+//                +"Sale list:"+toString(sale);
+        return print;
+    }
+    
+//    public String toString(List list){
+//        String print="";
+//        for(Object temp:list){
+//            print+=temp.toString()+"\n";
+//        }
+//        return print;
+//    }
+    
+    public String toString(HashMap<String, Transaction> hashmap){
         String print="";
-        for(Object temp:list){
-            print+=temp.toString()+"\n";
+        for(String key:hashmap.keySet()){
+            print+=key+":"+hashmap.get(key).toString()+"\n";
         }
         return print;
     }
     
-    public String toString(HashMap<String, Transaction> hashmap){
-        String print="";
-        return print;
-    }
+    
 }

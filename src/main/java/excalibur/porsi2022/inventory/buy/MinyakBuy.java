@@ -16,6 +16,6 @@ import excalibur.porsi2022.inventory.Product;
 public class MinyakBuy extends Product{
 
         public MinyakBuy(int amount){
-            super("/liter", 23000, amount);
+            super("Minyak","/liter", 23000, amount);
         }
 }

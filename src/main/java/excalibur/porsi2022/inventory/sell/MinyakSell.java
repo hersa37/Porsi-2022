@@ -5,7 +5,7 @@
 
 package excalibur.porsi2022.inventory.sell;
 
-import excalibur.porsi2022.inventory.Product;
+import excalibur.porsi2022.inventory.buy.MinyakBuy;
 
 /**
  *
@@ -13,9 +13,10 @@ import excalibur.porsi2022.inventory.Product;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class MinyakSell extends Product{
+public class MinyakSell extends MinyakBuy{
 
-        public MinyakSell(int amount){
-            super("/liter", 25000, amount);
-        }
+    public MinyakSell(int amount){
+        super(amount);
+        super.setPricePerUnit(25000);
+    }    
 }

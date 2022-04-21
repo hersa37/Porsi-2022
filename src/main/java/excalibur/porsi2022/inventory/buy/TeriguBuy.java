@@ -16,6 +16,6 @@ import excalibur.porsi2022.inventory.Product;
 public class TeriguBuy extends Product{
 
         public TeriguBuy(int amount){
-            super("/kg",8000,amount);
+            super("Terigu","/kg",8000,amount);
         }
 }

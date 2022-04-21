@@ -5,7 +5,7 @@
 
 package excalibur.porsi2022.inventory.sell;
 
-import excalibur.porsi2022.inventory.Product;
+import excalibur.porsi2022.inventory.buy.TeriguBuy;
 
 /**
  *
@@ -13,9 +13,10 @@ import excalibur.porsi2022.inventory.Product;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class TeriguSell extends Product{
+public class TeriguSell extends TeriguBuy{
 
-        public TeriguSell(int amount){
-            super("/kg",9000,amount);
-        }
+    public TeriguSell(int amount){
+        super(amount);
+        super.setPricePerUnit(9000);
+    }
 }

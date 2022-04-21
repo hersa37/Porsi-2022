@@ -5,6 +5,7 @@
 
 package excalibur.porsi2022.accounting;
 
+import excalibur.porsi2022.accounting.people.People;
 import java.time.LocalDate;
 import excalibur.porsi2022.inventory.*;
 import java.io.Serializable;
@@ -17,13 +18,15 @@ import java.io.Serializable;
  */
 public class Transaction implements Serializable {
     protected String id;
-    protected Product[] products;
+    private People person;
+    protected Inventory products;
     protected int totalCost;
     protected int paid;
     protected LocalDate date;
 
     
-    protected Transaction(Product[] products, int paid){
+    protected Transaction(People person, Inventory products, int paid){
+        this.person=person;
         this.products=products;
         this.paid=paid;
         this.date=LocalDate.now();
@@ -38,18 +41,19 @@ public class Transaction implements Serializable {
         this.id=id;
     }
 
-    public Product[] getProducts() {
+    public Inventory getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(Inventory products) {
         this.products=products;
+        totalCost=getTotalCost();
     }
 
     public int getTotalCost() {
         int total=0;
-        for(Product product:products) {
-            total+=product.getTotalPrice();
+        for(Product stock:products.getStock()) {
+            total+=stock.getTotalPrice();
         }
         return total;
     }
@@ -81,13 +85,20 @@ public class Transaction implements Serializable {
         
     }
     
-    public String toString(Product[] products){
-        String print="{";
-        for(int i=0; i<products.length;i++){
-            print+=products[i].toString();
-        }
-        print+="}";
-        
-        return print;
+    public String toString(String peopleType, Inventory products){
+        return"{ID: "+id
+                +"\n"+peopleType+": "+person
+                +"\nBarang-barang: \n"+products.toString()
+                +"=================================================\n"
+                +"Harga total\t\t\t"+LocaleFormatting.currency(products.getTotalPrice())
+                +"\nDibayar:\t\t\t"+LocaleFormatting.currency(paid)
+                +"\nSisa Pembayaran:\t\t"+LocaleFormatting.currency(getPaymentRemain());                
+//        String print="{";
+//        for(int i=0; i<products.getStock().length;i++){
+//            print+=products.getStock()[i].toString();
+//        }
+//        print+="}";
+//        
+//        return print;
     }
 }
