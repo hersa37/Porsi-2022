@@ -105,25 +105,33 @@ public class Store implements Serializable{
     
     public Customer findCustomer(String nameOrID){
         for(Customer customer:customers) {
-            if (customer.getName().equals(nameOrID) || customer.getName().equals(nameOrID)){
+            if (customer.getName().equals(nameOrID) || customer.getId().equals(nameOrID)){
                 return customer;
             }
         }
         return null;
     }
     
+    public void removeCustomer(String nameOrID){
+        Customer temp=findCustomer(nameOrID);
+        if(temp==null){
+            System.out.println("No such customer");
+        } else {
+            customers.remove(temp);
+        }
+    }
     public Supplier findSupplier(String nameOrID){
         for(Supplier supplier:suppliers) {
-            if (supplier.getName().equals(nameOrID) || supplier.getName().equals(nameOrID)){
+            if (supplier.getName().equals(nameOrID) || supplier.getId().equals(nameOrID)){
                 return supplier;
             }
         }
         return null;
     }
     
-    public boolean isCustomerInList(Customer customer){
-        return customers.contains(customer);
-    }
+//    public boolean isCustomerInList(Customer customer){
+//        return customers.contains(customer);
+//    }
     
     public ArrayList<Supplier> getSuppliers() {
         return suppliers;
@@ -151,7 +159,7 @@ public class Store implements Serializable{
     
     @Override
     public String toString(){
-        return owner.toString();
+        return storeName+";"+owner.toString();
     }
        
 }

@@ -25,7 +25,7 @@ public class TransactionSell extends Transaction{
 
     
     private String getUniqueID(){
-        return "sale_"+String.format("%05d", uniqueID++);
+        return "sell_"+String.format("%05d", uniqueID++);
     }
     
     @Override

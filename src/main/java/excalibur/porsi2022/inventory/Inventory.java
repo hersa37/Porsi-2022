@@ -29,20 +29,24 @@ public class Inventory implements Serializable {
                
     }
     
+    public void setStock(int beras, int garam, int gula, int minyak, int terigu){
+        stock[0].setAmount(beras);
+        stock[1].setAmount(garam);
+        stock[2].setAmount(gula);
+        stock[3].setAmount(minyak);
+        stock[4].setAmount(terigu);
+    }
+    
     public Product[] getStock(){
         return stock;
     }
     
-    public void addStock(Product product){
-        int i=0;
-        switch(product.getItemType()){
-            case "Beras": i=0; break;
-            case "Garam": i=1; break;
-            case "Gula": i=2; break;
-            case "Minyak": i=3; break;
-            case "Terigu": i=4; break;
-        }
-        stock[i].addAmount(product.getAmount());
+    public void addStock(int beras, int garam, int gula, int minyak, int terigu){
+        stock[0].addAmount(beras);
+        stock[1].addAmount(garam);
+        stock[2].addAmount(gula);
+        stock[3].addAmount(minyak);
+        stock[4].addAmount(terigu);
 //        for(int i=1;i<ITEM_TYPES;i++){
 //            if(stock[i]==null){
 //                stock[i]=product;
@@ -55,21 +59,12 @@ public class Inventory implements Serializable {
 //        }       
     }
     
-    public void reduceStock(Product product){
-        int i=0;
-        switch(product.getItemType()){
-            case "Beras": i=0; break;
-            case "Garam": i=1; break;
-            case "Gula": i=2; break;
-            case "Minyak": i=3; break;
-            case "Terigu": i=4; break;
-        }
-        if(stock[i].getAmount()>=0+stock[i].getAmount()){
-            stock[i].reduceAmount(product.getAmount());
-        } else {System.out.println("Not enough");
-            System.out.println("Stock "+stock[i].getItemType()
-                    +" has "+stock[i].getAmount()+" left");
-        }
+    public void reduceStock(int beras, int garam, int gula, int minyak, int terigu){
+        stock[0].reduceAmount(beras);
+        stock[1].reduceAmount(garam);
+        stock[2].reduceAmount(gula);
+        stock[3].reduceAmount(minyak);
+        stock[4].reduceAmount(terigu);
     }
     
     public String priceList(){
@@ -87,6 +82,7 @@ public class Inventory implements Serializable {
         }
         return total;
     }
+    
     @Override
     public String toString(){
         String print="{ Inventory\n";

@@ -20,7 +20,6 @@ public class Accounting  implements Serializable{
     private HashMap<String,TransactionBuy> purchase;
     private HashMap<String,TransactionSell> sale;
     
-    
     public Accounting(){
         purchase=new HashMap<>();
         sale=new HashMap<>();
@@ -60,45 +59,45 @@ public class Accounting  implements Serializable{
         return sale.get(sale_id);
     }
     
-    public List<TransactionBuy> getPurchaseUnpaid(){
-        List<TransactionBuy> purchaseUnpaid=new ArrayList<>();
-        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
-            if(!unpaid.getValue().isPaid()){
-                purchaseUnpaid.add(unpaid.getValue());
-            }
-        }
-        return purchaseUnpaid;
-    }
-    
-    public List<TransactionSell> getSaleUnpaid(){
-        List<TransactionSell> saleUnpaid=new ArrayList<>();
-        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
-            if(!unpaid.getValue().isPaid()){
-                saleUnpaid.add(unpaid.getValue());
-            }
-        }
-        return saleUnpaid;
-    }
-    
-    public int getPUnpaidAmount(){
-        int pUnpaid=0;
-        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
-            if(unpaid.getValue().isPaid()){
-                pUnpaid+=unpaid.getValue().getPaymentRemain();
-            }
-        }
-        return pUnpaid;
-    }
-    
-    public int getSUnpaidAmount(){
-        int sUnpaid=0;
-        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
-            if(unpaid.getValue().isPaid()){
-                sUnpaid+=unpaid.getValue().getPaymentRemain();
-            }
-        }
-        return sUnpaid;
-    }
+//    public List<TransactionBuy> getPurchaseUnpaid(){
+//        List<TransactionBuy> purchaseUnpaid=new ArrayList<>();
+//        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
+//            if(!unpaid.getValue().isPaid()){
+//                purchaseUnpaid.add(unpaid.getValue());
+//            }
+//        }
+//        return purchaseUnpaid;
+//    }
+//    
+//    public List<TransactionSell> getSaleUnpaid(){
+//        List<TransactionSell> saleUnpaid=new ArrayList<>();
+//        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
+//            if(!unpaid.getValue().isPaid()){
+//                saleUnpaid.add(unpaid.getValue());
+//            }
+//        }
+//        return saleUnpaid;
+//    }
+//    
+//    public int getPUnpaidAmount(){
+//        int pUnpaid=0;
+//        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
+//            if(unpaid.getValue().isPaid()){
+//                pUnpaid+=unpaid.getValue().getPaymentRemain();
+//            }
+//        }
+//        return pUnpaid;
+//    }
+//    
+//    public int getSUnpaidAmount(){
+//        int sUnpaid=0;
+//        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
+//            if(unpaid.getValue().isPaid()){
+//                sUnpaid+=unpaid.getValue().getPaymentRemain();
+//            }
+//        }
+//        return sUnpaid;
+//    }
     
     @Override
     public String toString(){
@@ -125,13 +124,13 @@ public class Accounting  implements Serializable{
 //        return print;
 //    }
     
-    public String toString(HashMap<String, Transaction> hashmap){
-        String print="";
-        for(String key:hashmap.keySet()){
-            print+=key+":"+hashmap.get(key).toString()+"\n";
-        }
-        return print;
-    }
+//    public String toString(HashMap<String, Transaction> hashmap){
+//        String print="";
+//        for(String key:hashmap.keySet()){
+//            print+=key+":"+hashmap.get(key).toString()+"\n";
+//        }
+//        return print;
+//    }
     
     
 }

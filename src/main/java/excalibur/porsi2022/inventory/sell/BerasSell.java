@@ -17,6 +17,6 @@ public class BerasSell extends BerasBuy{
     
     public BerasSell(int amount){
         super(amount);
-        super.setPricePerUnit(12000);
+        super.setPricePerUnit(13000);
     }       
 }

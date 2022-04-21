@@ -23,7 +23,7 @@ public class TransactionBuy extends Transaction {
     }
     
     private String getUniqueID(){
-        return "pur_"+String.format("%05d", uniqueID++);
+        return "buy_"+String.format("%05d", uniqueID++);
     }
     
     @Override
