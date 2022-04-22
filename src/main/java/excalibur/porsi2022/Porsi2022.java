@@ -22,7 +22,7 @@ public class Porsi2022 {
                              "\n                 Sistem Informasi               "+
                              "\n                   -excalibur-                  "+
                              "\n================================================");
-            System.out.println("                      -Menu-                    ");
+            System.out.println("\n                      -Menu-                    ");
             System.out.println("1. Load Toko\n2. Buat Toko Baru");
             System.out.print("Input: ");
             inp=input.nextInt();
@@ -37,14 +37,14 @@ public class Porsi2022 {
                         String namaToko=input.next();                    
                         toko=(Store) FileManagement.read(namaToko);
                         if(toko==null){
-                            System.out.println("Toko tidak ditemukan\n"
-                                    + "Buat toko baru? (y/n)");
+                            System.out.print("Toko tidak ditemukan\n"
+                                    + "Buat toko baru? (y/n):");
                             if(input.next().equals("y")){
                                 toko=tokoBaru();
                                 FileManagement.write(toko, toko.getFileName());
                             } 
                             else {
-                                System.out.println("Lanjut? (y/n)");
+                                System.out.print("Lanjut? (y/n):");
                                 if(input.next().equals("n")){
                                     System.exit(0);
                                 }
@@ -52,7 +52,7 @@ public class Porsi2022 {
                         }
                     } while(toko==null);
                     System.out.println(toko);
-                    System.out.print("\nApakah benar? (y/n)");
+                    System.out.print("\nApakah benar? (y/n):");
                 }while(!input.next().equals("y"));            
                 break;
             case 2:
@@ -63,7 +63,7 @@ public class Porsi2022 {
         int opsi;
         do{            
             do{
-            System.out.println("                    -Menu Utama-                ");
+            System.out.println("\n                    -Menu Utama-                ");
                 System.out.println("1. Penjualan\n"
                         + "2. Pembelian\n"
                         + "3. Daftar harga barang\n"
@@ -73,7 +73,6 @@ public class Porsi2022 {
                         + "0. Keluar");
                 System.out.print("Input: ");
                 opsi=input.nextInt();
-                System.out.println("");
             } while (opsi<0 || opsi>6);
 
             switch(opsi){
@@ -121,7 +120,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;     
         do{
-            System.out.println(" \t\t  # Penjualan #\n");
+            System.out.println("\n\t\t   # Penjualan #\n");
             System.out.println("1. Customer baru"
                     + "\n2. Customer lama"
                     + "\n0. Kembali ke menu utama");
@@ -168,7 +167,8 @@ public class Porsi2022 {
         Customer newCustomer;
         Scanner input=new Scanner(System.in);
         do{
-            System.out.println("\n    Data Customer baru ");
+            System.out.println("-------------------------\n");
+            System.out.println("\nData Customer Baru \n===============");
             System.out.print("Nama\t:");
             String name=input.next();
             System.out.print("No.Telp\t:");
@@ -177,7 +177,7 @@ public class Porsi2022 {
             String address=input.next();
             newCustomer=new Customer(name, phone, address);
 
-            System.out.println("Apakah data sudah benar?(y/n)");
+            System.out.print("Apakah data sudah benar?(y/n):");
         } while(!input.next().equals("y"));
         toko.addCustomer(newCustomer);
         FileManagement.write(toko, toko.getFileName());
@@ -193,15 +193,15 @@ public class Porsi2022 {
         do{ 
             System.out.println("\nJumlah barang penjualan:");
 
-            System.out.print("Beras\t: ");        
+            System.out.print(" Beras\t: ");        
             int beras=input.nextInt();
-            System.out.print("Garam\t: ");
+            System.out.print(" Garam\t: ");
             int garam=input.nextInt();
-            System.out.print("Gula\t: ");
+            System.out.print(" Gula\t: ");
             int gula=input.nextInt();
-            System.out.print("Minyak\t: ");
+            System.out.print(" Minyak\t: ");
             int minyak=input.nextInt();
-            System.out.print("Terigu\t: ");
+            System.out.print(" Terigu\t: ");
             int terigu=input.nextInt();
             products_Sell.addStock(beras, garam, gula, minyak, terigu);
             System.out.println("_________________________");
@@ -217,7 +217,7 @@ public class Porsi2022 {
                     return transactionSell;
                 }
             }else{
-                System.out.println("Masukkan data ulang? (y/n)");
+                System.out.print("Masukkan data ulang? (y/n):");
                 check=input.next();                 
             }                      
         } while(check.equals("y"));                   
@@ -228,10 +228,10 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;     
         do{
-            System.out.println(" \t\t  # Pembelian #\n");
+            System.out.println("\n\t\t   # Pembelian #\n");
             System.out.println("1. Supplier baru"
                     + "\n2. Supplier lama"
-                    + "+\n0. Kembali ke menu utama");
+                    + "\n0. Kembali ke menu utama");
             System.out.print("Input: ");
             inp=input.nextInt();
             TransactionBuy transactionBuy;
@@ -243,7 +243,7 @@ public class Porsi2022 {
                         toko.buy(transactionBuy);
                         break;
                     } else{
-                        System.out.println("Transaksi dibatalkan");
+                        System.out.println("-Transaksi dibatalkan-");
                         break;
                     }
                 case 2:
@@ -257,11 +257,11 @@ public class Porsi2022 {
                                 toko.buy(transactionBuy);
                                 break;
                             } else {
-                                System.out.println("Transaksi dibatalkan");
+                                System.out.println("-Transaksi dibatalkan-");
                                 break;
                             }
                         } else{
-                            System.out.println("Supplier tidak ditemukan.");
+                            System.out.println("-Supplier tidak ditemukan-");
                         }
                         break;
             }
@@ -273,6 +273,7 @@ public class Porsi2022 {
         Supplier newSupplier;
         Scanner input=new Scanner(System.in);
         do{
+            System.out.println("\nData Suplier Baru \n===============");
             System.out.print("Nama\t:");
             String name=input.next();
             System.out.print("No.Telp\t:");
@@ -281,7 +282,7 @@ public class Porsi2022 {
             String address=input.next();
             newSupplier=new Supplier(name, phone, address);
 
-            System.out.print("Apakah data sudah benar?(y/n)");
+            System.out.print("Apakah data sudah benar?(y/n):");
         } while(!input.next().equals("y"));
         toko.addSupplier(newSupplier);
         FileManagement.write(toko, toko.getFileName());
@@ -329,7 +330,7 @@ public class Porsi2022 {
     }
     
     public static void daftarHarga(Store toko){
-        System.out.println(" \t\t  # Daftar Harga Barang #\n");
+        System.out.println("\n\t\t   # Daftar Harga Barang #\n");
         System.out.println("Harga beli");
         System.out.println(toko.getBuyPrice());
         System.out.println("");
@@ -340,7 +341,7 @@ public class Porsi2022 {
     public static void pembukuan(Store toko){
         int inp;
         do{
-            System.out.println("\nPembukuan\n=========");
+            System.out.println("\n\t\t   # Pembukuan #\n");
             System.out.println("1. Sejarah penjualan"
                     + "\n2. Sejarah pembelian"
                     + "\n3. Setor uang"
@@ -353,16 +354,19 @@ public class Porsi2022 {
             
             switch(inp){
                 case 1:
+                    System.out.println("- Sejarah Penjualan");
                     System.out.println(toko.getAccountingBook().getSale());
                     break;
                 case 2:;
+                    System.out.println("- Sejarah Pembelian");
                     System.out.println(toko.getAccountingBook().getSale());
                     break;
                 case 3:;
-                    System.out.print("Masukkan jumlah uang: ");
+                    System.out.println("- Setor Uang");
+                    System.out.print("Masukkan jumlah uang\t: ");
                     int uangM=input.nextInt();
                     toko.addMoney(uangM);
-                    System.out.println("Saldo sekarang: "+
+                    System.out.println("Saldo sekarang\t\t: "+
                             LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
                     FileManagement.write(toko, toko.getFileName());
                     break;
@@ -370,18 +374,19 @@ public class Porsi2022 {
                     int uangK;
                     String check;
                     do{
-                        System.out.print("Masukkan jumlah uang: ");
+                        System.out.println("- Tarik Uang");
+                        System.out.print("Masukkan jumlah uang\t: ");
                         uangK=input.nextInt();
                         if(toko.getAccountingBook().getMoneyOwned()>=uangK){
                             toko.takeMoney(uangK);
-                            System.out.println("Saldo sekarang: "+
+                            System.out.println("Saldo sekarang\t\t: "+
                             LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
                             FileManagement.write(toko, toko.getFileName());
                             break;
                         }else{
-                            System.out.println("Saldo tidak cukup. Sisa: "
+                            System.out.println("Saldo tidak cukup. Sisa : "
                                     +LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                            System.out.print("Coba lagi? (y/n)");
+                            System.out.print("Coba lagi? (y/n):");
                             check=input.next();
                         }
                         
@@ -389,7 +394,8 @@ public class Porsi2022 {
                     
                     break;
                 case 5:
-                    System.out.println("Saldo sekarang: "+
+                    System.out.println("- Saldo");
+                    System.out.println("Saldo sekarang\t\t: "+
                     LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
                     break;              
             }
@@ -400,23 +406,25 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;
         do{
-            System.out.println(" \t\t  # Penjualan #\n");
+            System.out.println("\n\t\t   # Data Customer #\n");
             System.out.println("1. Tambah customer\n2. Hapus customer\n3. Edit customer\n4. Daftar customer\n5. Kembali");
             System.out.print("Input: ");
             inp=input.nextInt();
             switch(inp){
                 case 1:
-                    System.out.println("Nama:");
+                    System.out.println("\nTambah Customer \n===============");
+                    System.out.print("Nama:");
                     String name=input.next();
-                    System.out.println("No. Telp:");
+                    System.out.print("No. Telp:");
                     String phone=input.next();
-                    System.out.println("Alamat:");
+                    System.out.print("Alamat:");
                     String address=input.next();
                     
                     toko.addCustomer(new Customer(name, phone, address));
                     FileManagement.write(toko, toko.getFileName());
                     break;
                 case 2:
+                    System.out.println("\nHapus Customer \n===============");
                     System.out.println("Nama/ID customer: ");
                     toko.removeCustomer(input.next());
                     FileManagement.write(toko, toko.getFileName());
@@ -425,12 +433,13 @@ public class Porsi2022 {
                     Customer temp;
                     String check="n";
                     do{
+                        System.out.println("\nEdit Customer \n===============");
                         System.out.println("Cari customer:");
                         System.out.print("Nama/ID: ");
                         temp=toko.findCustomer(input.next());
                         if(temp==null){
-                            System.out.println("Customer tidak ditemukan");
-                            System.out.println("Cari lagi? (y/n)");
+                            System.out.println("-Customer tidak ditemukan-");
+                            System.out.print("Cari lagi? (y/n):");
                             check=input.next();
                             if(check.equals("n")){
                                 break;
@@ -447,19 +456,19 @@ public class Porsi2022 {
                         i=input.nextInt();
                         switch(i){
                             case 1:
-                                System.out.print("Nama baru:");
+                                System.out.print("Nama baru\t\t:");
                                 temp.setName(input.next());
                                 break;
                             case 2:
-                                System.out.print("No. Telp baru:");
+                                System.out.print("No. Telp baru\t:");
                                 temp.setName(input.next());
                                 break;
                             case 3:
-                                System.out.print("Alamat baru:");
+                                System.out.print("Alamat baru\t:");
                                 temp.setName(input.next());
                                 break;
                             case 4:
-                                System.out.print("ID baru:");
+                                System.out.print("ID baru\t\t:");
                                 temp.setName(input.next());
                                 break;
                         }
@@ -467,7 +476,7 @@ public class Porsi2022 {
                     }while(i>=1 && i<=4);
                     break;
                 case 4:
-                    System.out.println("Daftar Customer\n==================================");
+                    System.out.println("\nDaftar Customer \n===============");
                     System.out.println(toko.listCustomer());
                     break;
                 default:
@@ -480,7 +489,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;
         do{
-            System.out.println(" \t\t  # Data supplier #\n");
+            System.out.println("\n\t\t   # Data supplier #\n");
             System.out.println("1. Tambah Supplier\n"
                     + "2. Hapus supplier\n"
                     + "3. Edit supplier\n"
@@ -490,20 +499,20 @@ public class Porsi2022 {
             inp=input.nextInt();
             switch(inp){
                 case 1:
-                    System.out.println("Data supplier baru"
-                            + "\n---------------");
-                    System.out.print("Nama:");
+                    System.out.println("\nTambah Supplier \n===============");
+                    System.out.print("Nama\t\t: ");
                     String name=input.next();
-                    System.out.print("No. Telp:");
+                    System.out.print("No. Telp\t: ");
                     String phone=input.next();
-                    System.out.print("Alamat:");
+                    System.out.print("Alamat\t: ");
                     String address=input.next();
                     
                     toko.addSupplier(new Supplier(name, phone, address));
                     FileManagement.write(toko, toko.getFileName());
                     break;
                 case 2:
-                    System.out.println("Nama/ID Supplier: ");
+                    System.out.println("\nHapus Supplier \n===============");
+                    System.out.println("Nama/ID Supplier\t: ");
                     toko.removeSupplier(input.next());
                     FileManagement.write(toko, toko.getFileName());
                     break;
@@ -511,12 +520,12 @@ public class Porsi2022 {
                     Supplier temp;
                     String check="n";
                     do{
-                        System.out.println("Cari Supplier:");
-                        System.out.print("Nama/ID: ");
+                        System.out.println("Cari Supplier\t:");
+                        System.out.print("Nama/ID\t\t: ");
                         temp=toko.findSupplier(input.next());
                         if(temp==null){
-                            System.out.println("Supplier tidak ditemukan");
-                            System.out.print("Cari lagi? (y/n)");
+                            System.out.println("-Supplier tidak ditemukan-");
+                            System.out.print("Cari lagi? (y/n):");
                             check=input.next();
                             if(check.equals("n")){
                                 break;
@@ -538,19 +547,19 @@ public class Porsi2022 {
                         i=input.nextInt();
                         switch(i){
                             case 1:
-                                System.out.print("Nama baru:");
+                                System.out.print("Nama baru\t\t:");
                                 temp.setName(input.next());
                                 break;
                             case 2:
-                                System.out.print("No. Telp baru:");
+                                System.out.print("No. Telp baru\t:");
                                 temp.setName(input.next());
                                 break;
                             case 3:
-                                System.out.print("Alamat baru:");
+                                System.out.print("Alamat baru\t:");
                                 temp.setName(input.next());
                                 break;
                             case 4:
-                                System.out.print("ID baru:");
+                                System.out.print("ID baru\t\t:");
                                 temp.setName(input.next());
                                 break;                            
                         }
@@ -558,7 +567,7 @@ public class Porsi2022 {
                     }while(i>=1 && i<=4);
                     break;
                 case 4:
-                    System.out.println("Daftar Supplier\n==================================");
+                    System.out.println("\nDaftar Supplier \n===============");
                     System.out.println(toko.listSupplier());
                     break;
                 default:

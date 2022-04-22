@@ -98,9 +98,9 @@ public class Transaction implements Serializable {
                 +"\n"+peopleType+": "+person
                 +"\nBarang-barang: \n"+products.toString()
                 +"=================================================\n"
-                +"Harga total\t\t\t"+LocaleFormatting.currency(products.getTotalPrice())
-                +"\nDibayar:\t\t\t"+LocaleFormatting.currency(paid)
-                +"\nSisa Pembayaran:\t\t"+LocaleFormatting.currency(getPaymentRemain());                
+                +"Harga total\t\t:\t"+LocaleFormatting.currency(products.getTotalPrice())
+                +"\nDibayar\t\t\t:\t"+LocaleFormatting.currency(paid)
+                +"\nSisa Pembayaran\t:\t"+LocaleFormatting.currency(getPaymentRemain());                
 //        String print="{";
 //        for(int i=0; i<products.getStock().length;i++){
 //            print+=products.getStock()[i].toString();
