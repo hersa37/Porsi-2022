@@ -70,10 +70,12 @@ public class Porsi2022 {
                         + "4. Data customer\n"
                         + "5. Data supplier\n"
                         + "6. Pembukuan\n"
+                        + "7. Inventory\n"
                         + "0. Keluar");
                 System.out.print("Input: ");
                 opsi=input.nextInt();
-            } while (opsi<0 || opsi>6);
+                System.out.println("");
+            } while (opsi<0 || opsi>7);
 
             switch(opsi){
                 case 1:
@@ -95,6 +97,9 @@ public class Porsi2022 {
                     break;
                 case 6:
                     pembukuan(toko);
+                    break;
+                case 7:
+                    System.out.print(toko.getInventory().toString("Invntory"));
                     break;
             }
         } while(opsi!=0);
@@ -159,7 +164,6 @@ public class Porsi2022 {
                     }
                     break;
             }
-            FileManagement.write(toko, toko.getFileName());
         }while(inp==1 || inp==2);
     }
         
@@ -359,7 +363,7 @@ public class Porsi2022 {
                     break;
                 case 2:;
                     System.out.println("- Sejarah Pembelian");
-                    System.out.println(toko.getAccountingBook().getSale());
+                    System.out.println(toko.getAccountingBook().getPurchase());
                     break;
                 case 3:;
                     System.out.println("- Setor Uang");
@@ -573,5 +577,9 @@ public class Porsi2022 {
                 default:
             }
         }while(inp>=1 && inp<=4);
+    }
+    
+    public static void inventory(Store toko){
+        
     }
 }

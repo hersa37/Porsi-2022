@@ -114,20 +114,21 @@ public class Inventory implements Serializable {
     }
     
     
+    
     @Override
     public String toString(){
-        String print="{ Inventory\n";
+        String print="Inventory\n";
         print+="Barang\t"+"Harga/unit\t"+"Jumlah\t"+"Harga total\t\n";
         for(int i=0;i<ITEM_TYPES;i++){
             print+=stock[i].toStringNoLabel()+"\n";
-        }
-        print+="}";
+        }        
         return print;
     }
     
     public String toString(String transactionType){
-        String print=transactionType+"\n";
-        print+="Barang\t"+"Harga/unit\t"+"Jumlah\t"+"Harga total\t\n";
+        String print="\n";
+        print+="Barang\t"+"Harga/unit\t"+"Jumlah\t"+"Harga total\t\n"
+                + "\n";
         for(int i=0;i<ITEM_TYPES;i++){
             print+=stock[i].toStringNoLabel()+"\n";
         }        
