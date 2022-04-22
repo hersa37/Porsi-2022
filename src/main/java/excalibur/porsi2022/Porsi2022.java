@@ -52,7 +52,7 @@ public class Porsi2022 {
                         }
                     } while(toko==null);
                     System.out.println(toko);
-                    System.out.println("\nApakah benar? (y/n)");
+                    System.out.print("\nApakah benar? (y/n)");
                 }while(!input.next().equals("y"));            
                 break;
             case 2:
@@ -104,40 +104,48 @@ public class Porsi2022 {
     public static void penjualan(Store toko){
         Scanner input=new Scanner(System.in);
         int inp;     
+        do{
+            System.out.println(" \t\t  # Penjualan #\n");
+            System.out.println("1. Customer baru"
+                    + "\n2. Customer lama"
+                    + "\n0. Kembali ke menu utama");
+            System.out.print("Input: ");
+            inp=input.nextInt();
+            TransactionSell transactionSell;
         
-        System.out.println(" \t\t  # Penjualan #\n");
-        System.out.println("1. Customer baru\n2. Customer lama");
-        inp=input.nextInt();
-        TransactionSell transactionSell;
-        
-        switch(inp){
-            case 1:
-                Customer newCustomer=customerBaru(toko);
-                transactionSell=inputSaleItems(toko, newCustomer);
-                toko.sell(transactionSell);                
-                break;
-            case 2:
-                Customer oldCustomer;
-                do{
+            switch(inp){
+                case 1:
+                    Customer newCustomer=customerBaru(toko);
+                    transactionSell=inputSaleItems(toko, newCustomer);
+                    if(transactionSell!=null){
+                        toko.sell(transactionSell);                
+                        break;
+                    } else {
+                        System.out.println("Transaksi dibatalkan");
+                        break;
+                    }
+
+                case 2:
+                    Customer oldCustomer;
+
                     System.out.print("Cari nama/ID: ");
                     oldCustomer=toko.findCustomer(input.next());
-                    if(oldCustomer==null){
+                    if(oldCustomer!=null){
+                        transactionSell=inputSaleItems(toko, oldCustomer);
+                        if(transactionSell!=null){
+                            toko.sell(transactionSell);
+                            break;
+                        } else {
+                            System.out.println("Transaksi dibatalkan");
+                            break;
+                        }
+                    } else{
                         System.out.println("Customer tidak ditemukan.");
-                        System.out.println("Buat masukkan baru? (y/n): ");
-                        if(input.next().equals("y")){
-                            oldCustomer=customerBaru(toko);
-                        }
-                        System.out.println("Lanjut? (y/n)");
-                        if(input.next().equals("y")){
-                            System.exit(0);
-                        }
-                        
                     }
-                }while(oldCustomer==null);
-                transactionSell=inputSaleItems(toko, oldCustomer);
-                toko.sell(transactionSell);
-                break;
-        }
+                    break;
+            }
+            FileManagement.write(toko, toko.getFileName());
+        }while(inp==1 || inp==2);
     }
         
     public static Customer customerBaru(Store toko){
@@ -155,6 +163,7 @@ public class Porsi2022 {
             System.out.println("Apakah data sudah benar?(y/n)");
         } while(!input.next().equals("y"));
         toko.addCustomer(newCustomer);
+        FileManagement.write(toko, toko.getFileName());
         return newCustomer;
     }
     
@@ -162,76 +171,85 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         Products_Sell products_Sell=new Products_Sell();
         TransactionSell transactionSell;
-        boolean check;
         System.out.println("\n"+products_Sell.priceList());
+        String check="n";
+        do{ 
+            System.out.println("\nJumlah barang penjualan:");
 
-        do{            
-            do{
-                System.out.println("\nJumlah barang penjualan:");
+            System.out.print("Beras\t: ");        
+            int beras=input.nextInt();
+            System.out.print("Garam\t: ");
+            int garam=input.nextInt();
+            System.out.print("Gula\t: ");
+            int gula=input.nextInt();
+            System.out.print("Minyak\t: ");
+            int minyak=input.nextInt();
+            System.out.print("Terigu\t: ");
+            int terigu=input.nextInt();
+            products_Sell.addStock(beras, garam, gula, minyak, terigu);
+            System.out.println("_________________________");
+            System.out.println("Total\t: "+LocaleFormatting.currency(products_Sell.getTotalPrice()));
+            if((toko.isInStock(products_Sell))){
+                System.out.println("Pembayaran: ");
+                int payment=input.nextInt();
+                transactionSell=new TransactionSell(customer, products_Sell, payment);
+                System.out.println(transactionSell);
 
-                System.out.print("Beras\t: ");        
-                int beras=input.nextInt();
-                System.out.print("Garam\t: ");
-                int garam=input.nextInt();
-                System.out.print("Gula\t: ");
-                int gula=input.nextInt();
-                System.out.print("Minyak\t: ");
-                int minyak=input.nextInt();
-                System.out.print("Terigu\t: ");
-                int terigu=input.nextInt();
-                products_Sell.addStock(beras, garam, gula, minyak, terigu);
-                System.out.println("_________________________");
-                System.out.println("Total\t: "+LocaleFormatting.currency(products_Sell.getTotalPrice()));
-                check=toko.isInStock(products_Sell);
-                if(!check){
-                    System.out.println("Lanjut? (y/n)");
-                    if(input.next().equals("y")){
-                        System.exit(0);
-                    }
+                System.out.print("Apakah data benar? (y/n):");
+                if(input.next().equals("y")){
+                    return transactionSell;
                 }
-            } while(!check);
-            System.out.println("Pembayaran: ");
-            int payment=input.nextInt();
-            transactionSell=new TransactionSell(customer, products_Sell, payment);
-            System.out.println(transactionSell);
-
-            System.out.print("Apakah data benar? (y/n):");
-        } while(!input.next().equals("y"));
-        
-        return transactionSell;
+            }else{
+                System.out.println("Masukkan data ulang? (y/n)");
+                check=input.next();                 
+            }                      
+        } while(check.equals("y"));                   
+        return null;
     }
     
     public static void pembelian(Store toko){
-         Scanner input=new Scanner(System.in);
+        Scanner input=new Scanner(System.in);
         int inp;     
-        System.out.println(" \t\t  # Pembelian #\n");
-        System.out.println("1. Supplier baru\n2. Supplier lama");
-        System.out.print("Input: ");
-        inp=input.nextInt();
-        TransactionBuy transactionBuy;
-        switch(inp){
-            case 1:
-                Supplier newSupplier=supplierBaru(toko);
-                transactionBuy=inputBuyItem(toko, newSupplier);
-                toko.buy(transactionBuy);
-                
-                break;
-            case 2:
-                Supplier oldSupplier;
-                do{
-                    System.out.print("Cari nama/ID");
-                    oldSupplier=toko.findSupplier(input.next());
-                    if(oldSupplier==null){
-                        System.out.print("Tidak ditemukan.\nBuat masukkan baru? (y/n): ");
-                        if(input.next().equals("y")){
-                            oldSupplier=supplierBaru(toko);
-                        }
+        do{
+            System.out.println(" \t\t  # Pembelian #\n");
+            System.out.println("1. Supplier baru"
+                    + "\n2. Supplier lama"
+                    + "+\n0. Kembali ke menu utama");
+            System.out.print("Input: ");
+            inp=input.nextInt();
+            TransactionBuy transactionBuy;
+            switch(inp){
+                case 1:
+                    Supplier newSupplier=supplierBaru(toko);
+                    transactionBuy=inputBuyItem(toko, newSupplier);
+                    if(transactionBuy!=null){
+                        toko.buy(transactionBuy);
+                        break;
+                    } else{
+                        System.out.println("Transaksi dibatalkan");
+                        break;
                     }
-                }while(oldSupplier==null);
-                transactionBuy=inputBuyItem(toko, oldSupplier);
-                toko.buy(transactionBuy);
-                break;
-        }
+                case 2:
+                    Supplier oldSupplier;
+
+                        System.out.print("Cari nama/ID: ");
+                        oldSupplier=toko.findSupplier(input.next());
+                        if(oldSupplier!=null){
+                            transactionBuy=inputBuyItem(toko, oldSupplier);
+                            if(transactionBuy!=null){
+                                toko.buy(transactionBuy);
+                                break;
+                            } else {
+                                System.out.println("Transaksi dibatalkan");
+                                break;
+                            }
+                        } else{
+                            System.out.println("Supplier tidak ditemukan.");
+                        }
+                        break;
+            }
+            FileManagement.write(toko, toko.getFileName());
+        }while(inp==1 || inp==2);
     }
     
     public static Supplier supplierBaru(Store toko){
@@ -246,53 +264,51 @@ public class Porsi2022 {
             String address=input.next();
             newSupplier=new Supplier(name, phone, address);
 
-            System.out.println("Apakah data sudah benar?(y/n)");
+            System.out.print("Apakah data sudah benar?(y/n)");
         } while(!input.next().equals("y"));
         toko.addSupplier(newSupplier);
+        FileManagement.write(toko, toko.getFileName());
         return newSupplier;
     }
     
     public static TransactionBuy inputBuyItem(Store toko, Supplier supplier){
         Scanner input=new Scanner(System.in);
         Products_Buy product_buy=new Products_Buy();
-        TransactionBuy transctionBuy;
+        TransactionBuy transactionBuy;
         System.out.println("\n"+product_buy.priceList());
-
+        String check="y";
         do{
-            boolean check;
-            do{
-                System.out.println("\nJumlah barang pembelian:");
 
-                System.out.print("Beras\t: ");        
-                int beras=input.nextInt();
-                System.out.print("Garam\t: ");
-                int garam=input.nextInt();
-                System.out.print("Gula\t: ");
-                int gula=input.nextInt();
-                System.out.print("Minyak\t: ");
-                int minyak=input.nextInt();
-                System.out.print("Terigu\t: ");
-                int terigu=input.nextInt();
-                product_buy.addStock(beras, garam, gula, minyak, terigu);            
-                System.out.println("Total\t:"+LocaleFormatting.currency(product_buy.getTotalPrice()));
-                check=toko.isEnoughMoney(product_buy);
-                if(!check){
-                    System.out.println("Lanjut? (y/n)");
-                    if(input.next().equals("y")){
-                        System.exit(0);
-                    }
+            System.out.println("\nJumlah barang pembelian:");
+
+            System.out.print("Beras\t: ");        
+            int beras=input.nextInt();
+            System.out.print("Garam\t: ");
+            int garam=input.nextInt();
+            System.out.print("Gula\t: ");
+            int gula=input.nextInt();
+            System.out.print("Minyak\t: ");
+            int minyak=input.nextInt();
+            System.out.print("Terigu\t: ");
+            int terigu=input.nextInt();
+            product_buy.addStock(beras, garam, gula, minyak, terigu);            
+            System.out.println("Total\t:"+LocaleFormatting.currency(product_buy.getTotalPrice()));
+            if(toko.isEnoughMoney(product_buy)){
+                System.out.println("Pembayaran: ");
+                int payment=input.nextInt();
+                transactionBuy=new TransactionBuy(supplier, product_buy, payment);
+                System.out.println(transactionBuy);
+
+                System.out.print("Apakah data benar? (y/n):");
+                if(input.next().equals("y")){
+                    return transactionBuy;
                 }
-            } while(!check);
-            
-            System.out.println("Pembayaran: ");
-            int payment=input.nextInt();
-            transctionBuy=new TransactionBuy(supplier, product_buy, payment);
-            System.out.println(transctionBuy);
-
-            System.out.print("Apakah data benar? (y/n):");
-        } while(!input.next().equals("y"));
-        
-        return transctionBuy;
+            } else{
+                System.out.print("Masukkan data ulang? (y/n)");
+                check=input.next();
+            } 
+        } while(check.equals("y"));
+        return null;
     }
     
     public static void daftarHarga(Store toko){
@@ -312,12 +328,11 @@ public class Porsi2022 {
         System.out.print("Nama pemilik\t:");
         String name=input.next();
         System.out.print("");
-        System.out.print("No. telp\t\t:");
+        System.out.print("No. telp\t:");
         String phone=input.next();
         System.out.print("Alamat toko\t:");
         String address=input.next();
         Owner pemilik=new Owner(name, phone, address);
-        
         return new Store(storeName,pemilik);
     }
     
@@ -339,10 +354,12 @@ public class Porsi2022 {
                     String address=input.next();
                     
                     toko.addCustomer(new Customer(name, phone, address));
+                    FileManagement.write(toko, toko.getFileName());
                     break;
                 case 2:
                     System.out.println("Nama/ID customer: ");
                     toko.removeCustomer(input.next());
+                    FileManagement.write(toko, toko.getFileName());
                     break;
                 case 3:
                     Customer temp;
@@ -385,7 +402,8 @@ public class Porsi2022 {
                                 System.out.print("ID baru:");
                                 temp.setName(input.next());
                                 break;
-                        }                        
+                        }
+                        FileManagement.write(toko, toko.getFileName());
                     }while(i>=1 && i<=4);
                     break;
                 case 4:
@@ -407,9 +425,10 @@ public class Porsi2022 {
                     + "\n3. Setor uang"
                     + "\n4. Tarik uang"
                     + "\n5. Saldo"
-                    + "\n0. Keluar program");
+                    + "\n0. Menu utama");
             Scanner input=new Scanner(System.in);
-           inp=input.nextInt();
+            System.out.print("Input: ");
+            inp=input.nextInt();
             
             switch(inp){
                 case 1:
@@ -424,6 +443,7 @@ public class Porsi2022 {
                     toko.addMoney(uangM);
                     System.out.println("Saldo sekarang: "+
                             LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
+                    FileManagement.write(toko, toko.getFileName());
                     break;
                 case 4:
                     int uangK;
@@ -435,23 +455,22 @@ public class Porsi2022 {
                             toko.takeMoney(uangK);
                             System.out.println("Saldo sekarang: "+
                             LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                            check="n";
+                            FileManagement.write(toko, toko.getFileName());
                             break;
                         }else{
                             System.out.println("Saldo tidak cukup. Sisa: "
                                     +LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                            System.out.println("Coba lagi? (y/n)");
+                            System.out.print("Coba lagi? (y/n)");
                             check=input.next();
                         }
                         
                     }while(check.equals("y"));
+                    
                     break;
                 case 5:
                     System.out.println("Saldo sekarang: "+
                     LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                    break;
-                case 6:
-                    System.exit(0);                 
+                    break;              
             }
         } while(inp>=1 && inp<=5);
     }
@@ -462,26 +481,30 @@ public class Porsi2022 {
         do{
             System.out.println("\nData supplier\n===================");
             System.out.println("1. Tambah Supplier\n"
-                    + "2. Hapus customer\n"
-                    + "3. Edit customer\n"
-                    + "4. Daftar customer\n"
+                    + "2. Hapus supplier\n"
+                    + "3. Edit supplier\n"
+                    + "4. Daftar supplier\n"
                     + "5. Kembali");
             System.out.print("Input: ");
             inp=input.nextInt();
             switch(inp){
                 case 1:
-                    System.out.println("Nama:");
+                    System.out.println("Data supplier baru"
+                            + "\n---------------");
+                    System.out.print("Nama:");
                     String name=input.next();
-                    System.out.println("No. Telp:");
+                    System.out.print("No. Telp:");
                     String phone=input.next();
-                    System.out.println("Alamat:");
+                    System.out.print("Alamat:");
                     String address=input.next();
                     
                     toko.addSupplier(new Supplier(name, phone, address));
+                    FileManagement.write(toko, toko.getFileName());
                     break;
                 case 2:
                     System.out.println("Nama/ID Supplier: ");
                     toko.removeSupplier(input.next());
+                    FileManagement.write(toko, toko.getFileName());
                     break;
                 case 3:
                     Supplier temp;
@@ -529,7 +552,8 @@ public class Porsi2022 {
                                 System.out.print("ID baru:");
                                 temp.setName(input.next());
                                 break;                            
-                        }                        
+                        }
+                        FileManagement.write(toko, toko.getFileName());                        
                     }while(i>=1 && i<=4);
                     break;
                 case 4:
