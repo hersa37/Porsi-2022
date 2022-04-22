@@ -109,7 +109,7 @@ public class Porsi2022 {
         System.out.print("Nama pemilik\t:");
         String name=input.next();
         System.out.print("");
-        System.out.print("No. telp\t:");
+        System.out.print("No. telp\t\t:");
         String phone=input.next();
         System.out.print("Alamat toko\t:");
         String address=input.next();
@@ -168,6 +168,7 @@ public class Porsi2022 {
         Customer newCustomer;
         Scanner input=new Scanner(System.in);
         do{
+            System.out.println("\n    Data Customer baru ");
             System.out.print("Nama\t:");
             String name=input.next();
             System.out.print("No.Telp\t:");
@@ -479,7 +480,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;
         do{
-            System.out.println("\nData supplier\n===================");
+            System.out.println(" \t\t  # Data supplier #\n");
             System.out.println("1. Tambah Supplier\n"
                     + "2. Hapus supplier\n"
                     + "3. Edit supplier\n"
