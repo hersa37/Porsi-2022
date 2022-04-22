@@ -18,6 +18,11 @@ public class Porsi2022 {
         int inp;
         Scanner input=new Scanner(System.in);
         do{
+            System.out.println("================================================"+
+                             "\n                 Sistem Informasi               "+
+                             "\n                   -excalibur-                  "+
+                             "\n================================================");
+            System.out.println("                      -Menu-                    ");
             System.out.println("1. Load toko\n2. Buat Toko baru");
             System.out.print("Input: ");
             inp=input.nextInt();
