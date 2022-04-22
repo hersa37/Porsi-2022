@@ -9,5 +9,26 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <exec.mainClass>excalibur.porsi2022.Porsi2022</exec.mainClass>
+        
     </properties>
+    
+    <build>
+        <directory>/home/echa/College/Semester 2/Porsi_Coding2022/Porsi-2022/Compiled</directory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <mainClass>excalibur.porsi2022.Porsi2022</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

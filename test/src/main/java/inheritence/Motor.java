@@ -1,9 +1,9 @@
-package excalibur.porsi2022;
-
 /*
  *  Made for college assignments/personal projects.
  *  Do not use without permission
  */
+
+package inheritence;
 
 /**
  *
@@ -11,6 +11,9 @@ package excalibur.porsi2022;
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class Supplier {
-
+public class Motor extends Kendaraan{
+    @Override
+    public void sound(){
+        System.out.println("Brem");
+    }
 }
