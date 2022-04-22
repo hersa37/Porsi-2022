@@ -8,7 +8,7 @@ package excalibur.porsi2022.accounting;
 import excalibur.porsi2022.inventory.*;
 import excalibur.porsi2022.inventory.sell.*;
 /**
- *
+ * A list of bought items with its own price
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma

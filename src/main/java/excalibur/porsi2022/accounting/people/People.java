@@ -8,7 +8,7 @@ package excalibur.porsi2022.accounting.people;
 import java.io.Serializable;
 
 /**
- *
+ * A Class for different people used in the program
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma

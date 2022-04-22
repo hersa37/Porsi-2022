@@ -9,7 +9,7 @@ import excalibur.porsi2022.accounting.LocaleFormatting;
 import java.io.Serializable;
 
 /**
- *
+ * Stores each type of product
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma

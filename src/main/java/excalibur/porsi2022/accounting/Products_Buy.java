@@ -8,7 +8,7 @@ package excalibur.porsi2022.accounting;
 import excalibur.porsi2022.inventory.Inventory;
 
 /**
- *
+ * Class with list of bought products
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma

@@ -7,13 +7,12 @@ package excalibur.porsi2022;
 
 import excalibur.porsi2022.accounting.people.*;
 import excalibur.porsi2022.accounting.*;
-import excalibur.porsi2022.inventory.Inventory;
-import excalibur.porsi2022.inventory.Product;
+import excalibur.porsi2022.inventory.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * Class of the store
  * @author asus
  */
 public class Store implements Serializable{
@@ -27,6 +26,11 @@ public class Store implements Serializable{
     private ArrayList<Supplier> suppliers;
     private String fileName;
     
+    /**
+     * Generates store with all attributes initialized
+     * @param storeName the name of the store
+     * @param owner the object of the owner
+     */
     public Store(String storeName, Owner owner){
         this.storeName=storeName;
         this.owner=owner;
@@ -100,6 +104,10 @@ public class Store implements Serializable{
         customers.add(customer);
     }
     
+    /**
+     * Lists all customers as a string
+     * @return the string of formatted customer list
+     */
     public String listCustomer(){
         String print="ID\t\tNama\tNo. telp\tAlamat" ;
         for(int i=0;i<customers.size();i++){
@@ -115,6 +123,11 @@ public class Store implements Serializable{
         suppliers.add(supplier);
     }
     
+    /**
+     * Finds customer by name or ID
+     * @param nameOrID the name or ID to be searched
+     * @return the customer object if found, returns null if not
+     */
     public Customer findCustomer(String nameOrID){
         for(Customer customer:customers) {
             if (customer.getName().equals(nameOrID) || customer.getId().equals(nameOrID)){
@@ -124,6 +137,10 @@ public class Store implements Serializable{
         return null;
     }
     
+    /**
+     * Removes customer based on name or ID
+     * @param nameOrID name or ID to be removed
+     */
     public void removeCustomer(String nameOrID){
         Customer temp=findCustomer(nameOrID);
         if(temp==null){
@@ -133,6 +150,11 @@ public class Store implements Serializable{
         }
     }
     
+    /**
+     * Finds supplier based on ID
+     * @param nameOrID name or ID to be searched
+     * @return the supplier object if found, null if not
+     */
     public Supplier findSupplier(String nameOrID){
         for(Supplier supplier:suppliers) {
             if (supplier.getName().equals(nameOrID) || supplier.getId().equals(nameOrID)){
@@ -142,6 +164,10 @@ public class Store implements Serializable{
         return null;
     }
     
+    /**
+     * Removes supplier based on name or ID
+     * @param nameOrID name or ID to be removed
+     */
     public void removeSupplier(String nameOrID){
         Supplier temp=findSupplier(nameOrID);
         if(temp==null){
@@ -162,6 +188,10 @@ public class Store implements Serializable{
         this.suppliers=suppliers;
     }    
     
+    /**
+     * Lists all saved suppliers
+     * @return the supplier in a formatted string
+     */
     public String listSupplier(){
         String print="ID\t\tNama\tNo. telp\tAlamat" ;
         for(int i=0;i<suppliers.size();i++){
@@ -173,6 +203,11 @@ public class Store implements Serializable{
         return print;
     }
     
+    /**
+     * Checks if products requested are  in stock
+     * @param products the products checked
+     * @return whether items are in stock or not
+     */
     public boolean isInStock(Products_Sell products){
         for(int i=0;i<Inventory.ITEM_TYPES;i++){
             if(inventory.getStock()[i].getAmount()<products.getStock()[i].getAmount()){
@@ -184,6 +219,11 @@ public class Store implements Serializable{
         return true;
     }
     
+    /**
+     * Checks if store has enough money or not based on purchase
+     * @param newBuy purchase attempted 
+     * @return whether there is enough money
+     */
     public boolean isEnoughMoney(Products_Buy newBuy){
         if(accountingBook.getMoneyOwned()<newBuy.getTotalPrice()){
             System.out.println("Uang tidak cukup. Sisa "+
@@ -193,6 +233,10 @@ public class Store implements Serializable{
         return true;
     }
     
+    /**
+     * Method for successful sale transactions
+     * @param newSell the sale being added
+     */
     public void sell(TransactionSell newSell){
         accountingBook.addSale(newSell);
         Product[] p=newSell.getProducts().getStock();
@@ -204,7 +248,10 @@ public class Store implements Serializable{
                 , p[4].getAmount());
     }
     
-    
+    /**
+     * Method for successful purchase transactions
+     * @param newBuy the purchase being added
+     */
     public void buy(TransactionBuy newBuy){
         accountingBook.addPurchase(newBuy);
         Product[] p=newBuy.getProducts().getStock();
@@ -215,13 +262,19 @@ public class Store implements Serializable{
                 , p[3].getAmount()
                 , p[4].getAmount());
     }
-    
+    /**
+     * Adds money to the store without any sale
+     * @param money the amount added
+     */
     public void addMoney(int money){
         Transaction temp=new Transaction(owner, new Inventory(), money);
         temp.setPaid(money);
         accountingBook.ownerAddMoney(temp);
     }
-    
+    /**
+     * Takes money from the store without any purchase
+     * @param money the amount taken
+     */
     public void takeMoney(int money){
         Transaction temp=new Transaction(owner, new Inventory(), money);
         temp.setPaid(-money);

@@ -6,7 +6,7 @@
 package excalibur.porsi2022.accounting.people;
 
 /**
- *
+ * Class for the owner with specified owner ID
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma

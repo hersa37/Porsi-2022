@@ -11,7 +11,7 @@ import excalibur.porsi2022.inventory.*;
 import java.io.Serializable;
 
 /**
- *
+ * Class for the different types of transactions
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
@@ -57,13 +57,9 @@ public class Transaction implements Serializable {
     public void setPaid(int paid) {
         this.paid=paid;
     }
-
+        
     public int getTotalCost() {
-        int total=0;
-        for(Product stock:products.getStock()) {
-            total+=stock.getTotalPrice();
-        }
-        return total;
+        return products.getTotalPrice();
     }
 
     public void setTotalCost(int totalCost) {
@@ -86,6 +82,10 @@ public class Transaction implements Serializable {
         this.date=date;
     }
     
+    /**
+     * Method made in case unpaid transactions are to be paid
+     * @param payment the payment added to the transaction
+     */
     public void addPayment(int payment){
         if(paid<totalCost){
             paid+=payment;

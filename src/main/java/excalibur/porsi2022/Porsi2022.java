@@ -101,6 +101,22 @@ public class Porsi2022 {
         } while(opsi!=0);
     }
     
+    public static Store tokoBaru(){
+        Scanner input=new Scanner(System.in);
+        System.out.println(" \t  # Buat Toko Baru #\n");
+        System.out.print("Nama toko\t:");
+        String storeName=input.next();
+        System.out.print("Nama pemilik\t:");
+        String name=input.next();
+        System.out.print("");
+        System.out.print("No. telp\t:");
+        String phone=input.next();
+        System.out.print("Alamat toko\t:");
+        String address=input.next();
+        Owner pemilik=new Owner(name, phone, address);
+        return new Store(storeName,pemilik);
+    }
+    
     public static void penjualan(Store toko){
         Scanner input=new Scanner(System.in);
         int inp;     
@@ -320,20 +336,63 @@ public class Porsi2022 {
         System.out.println(toko.getSellPrice());
     }
     
-    public static Store tokoBaru(){
-        Scanner input=new Scanner(System.in);
-        System.out.println(" \t  # Buat Toko Baru #\n");
-        System.out.print("Nama toko\t:");
-        String storeName=input.next();
-        System.out.print("Nama pemilik\t:");
-        String name=input.next();
-        System.out.print("");
-        System.out.print("No. telp\t:");
-        String phone=input.next();
-        System.out.print("Alamat toko\t:");
-        String address=input.next();
-        Owner pemilik=new Owner(name, phone, address);
-        return new Store(storeName,pemilik);
+    public static void pembukuan(Store toko){
+        int inp;
+        do{
+            System.out.println("\nPembukuan\n=========");
+            System.out.println("1. Sejarah penjualan"
+                    + "\n2. Sejarah pembelian"
+                    + "\n3. Setor uang"
+                    + "\n4. Tarik uang"
+                    + "\n5. Saldo"
+                    + "\n0. Menu utama");
+            Scanner input=new Scanner(System.in);
+            System.out.print("Input: ");
+            inp=input.nextInt();
+            
+            switch(inp){
+                case 1:
+                    System.out.println(toko.getAccountingBook().getSale());
+                    break;
+                case 2:;
+                    System.out.println(toko.getAccountingBook().getSale());
+                    break;
+                case 3:;
+                    System.out.print("Masukkan jumlah uang: ");
+                    int uangM=input.nextInt();
+                    toko.addMoney(uangM);
+                    System.out.println("Saldo sekarang: "+
+                            LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
+                    FileManagement.write(toko, toko.getFileName());
+                    break;
+                case 4:
+                    int uangK;
+                    String check;
+                    do{
+                        System.out.print("Masukkan jumlah uang: ");
+                        uangK=input.nextInt();
+                        if(toko.getAccountingBook().getMoneyOwned()>=uangK){
+                            toko.takeMoney(uangK);
+                            System.out.println("Saldo sekarang: "+
+                            LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
+                            FileManagement.write(toko, toko.getFileName());
+                            break;
+                        }else{
+                            System.out.println("Saldo tidak cukup. Sisa: "
+                                    +LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
+                            System.out.print("Coba lagi? (y/n)");
+                            check=input.next();
+                        }
+                        
+                    }while(check.equals("y"));
+                    
+                    break;
+                case 5:
+                    System.out.println("Saldo sekarang: "+
+                    LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
+                    break;              
+            }
+        } while(inp>=1 && inp<=5);
     }
     
     public static void dataCustomer(Store toko){
@@ -415,66 +474,7 @@ public class Porsi2022 {
         }while(inp>=1 && inp<=4);
         
     }
-    
-    public static void pembukuan(Store toko){
-        int inp;
-        do{
-            System.out.println("\nPembukuan\n=========");
-            System.out.println("1. Sejarah penjualan"
-                    + "\n2. Sejarah pembelian"
-                    + "\n3. Setor uang"
-                    + "\n4. Tarik uang"
-                    + "\n5. Saldo"
-                    + "\n0. Menu utama");
-            Scanner input=new Scanner(System.in);
-            System.out.print("Input: ");
-            inp=input.nextInt();
-            
-            switch(inp){
-                case 1:
-                    System.out.println(toko.getAccountingBook().getSale());
-                    break;
-                case 2:;
-                    System.out.println(toko.getAccountingBook().getSale());
-                    break;
-                case 3:;
-                    System.out.print("Masukkan jumlah uang: ");
-                    int uangM=input.nextInt();
-                    toko.addMoney(uangM);
-                    System.out.println("Saldo sekarang: "+
-                            LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                    FileManagement.write(toko, toko.getFileName());
-                    break;
-                case 4:
-                    int uangK;
-                    String check;
-                    do{
-                        System.out.print("Masukkan jumlah uang: ");
-                        uangK=input.nextInt();
-                        if(toko.getAccountingBook().getMoneyOwned()>=uangK){
-                            toko.takeMoney(uangK);
-                            System.out.println("Saldo sekarang: "+
-                            LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                            FileManagement.write(toko, toko.getFileName());
-                            break;
-                        }else{
-                            System.out.println("Saldo tidak cukup. Sisa: "
-                                    +LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                            System.out.print("Coba lagi? (y/n)");
-                            check=input.next();
-                        }
-                        
-                    }while(check.equals("y"));
-                    
-                    break;
-                case 5:
-                    System.out.println("Saldo sekarang: "+
-                    LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
-                    break;              
-            }
-        } while(inp>=1 && inp<=5);
-    }
-    
+ 
     public static void dataSupplier(Store toko){
         Scanner input=new Scanner(System.in);
         int inp;

@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 
 /**
- *
+ * Stores a fixed order of products
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
@@ -20,6 +20,9 @@ public class Inventory implements Serializable {
     protected Product[] stock;
     public static final int ITEM_TYPES=5;
     
+    /**
+     * Object starts with a predetermined array for easier management
+     */
     public Inventory(){
         stock=new Product[ITEM_TYPES];
         stock[0]=new BerasBuy(0);
@@ -30,6 +33,14 @@ public class Inventory implements Serializable {
                
     }
     
+    /**
+     * Method sets the stock for each product. 
+     * @param beras number of beras set
+     * @param garam number of garam set
+     * @param gula number of gula set
+     * @param minyak number of minyak set
+     * @param terigu number of terigu set
+     */
     public void setStock(int beras, int garam, int gula, int minyak, int terigu){
         stock[0].setAmount(beras);
         stock[1].setAmount(garam);
@@ -42,6 +53,14 @@ public class Inventory implements Serializable {
         return stock;
     }
     
+    /**
+     * Method adds stock for each product
+     * @param beras
+     * @param garam
+     * @param gula
+     * @param minyak
+     * @param terigu 
+     */
     public void addStock(int beras, int garam, int gula, int minyak, int terigu){
         stock[0].addAmount(beras);
         stock[1].addAmount(garam);
@@ -68,7 +87,10 @@ public class Inventory implements Serializable {
         stock[4].reduceAmount(terigu);
     }
     
-    
+    /**
+     * Method prints a list of the pricing for each product in a specified format
+     * @return the formatted price list
+     */
     public String priceList(){
         String print="Price List\n===============\n"+"Barang\t"+"Harga/unit";
         for(int i=0;i<ITEM_TYPES;i++){
@@ -79,6 +101,10 @@ public class Inventory implements Serializable {
         return print;
     }
     
+    /**
+     * Calculates the total price of all products combined
+     * @return the total price
+     */
     public int getTotalPrice(){
         int total=0;
         for(int i=0;i<ITEM_TYPES;i++){
@@ -104,8 +130,7 @@ public class Inventory implements Serializable {
         print+="Barang\t"+"Harga/unit\t"+"Jumlah\t"+"Harga total\t\n";
         for(int i=0;i<ITEM_TYPES;i++){
             print+=stock[i].toStringNoLabel()+"\n";
-        }
-        
+        }        
         return print;
     }
 }

@@ -7,20 +7,18 @@ package excalibur.porsi2022.accounting;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
+
 /**
- *
+ * Class to store all the transactions of a store
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
 public class Accounting  implements Serializable{
-    private HashMap<String,TransactionBuy> purchase;
-    private HashMap<String,TransactionSell> sale;
-    private HashMap<LocalDate,Transaction> ownerCashFlow;
+    private HashMap<String,TransactionBuy> purchase; //Inbound transaction
+    private HashMap<String,TransactionSell> sale; //Outbound transaction
+    private HashMap<LocalDate,Transaction> ownerCashFlow; //List of times owner takes/adds money
     private int moneyOwned;
     
     public Accounting(){
@@ -53,7 +51,10 @@ public class Accounting  implements Serializable{
         this.sale=sale;
     }
     
-    
+    /**
+     * Adds a transaction to the list. Uses transaction ID as key
+     * @param purchase the transaction to be added
+     */
     public void addPurchase(TransactionBuy purchase){
         this.purchase.put(purchase.getId(), purchase);
         moneyOwned-=purchase.getPaid();
@@ -62,7 +63,10 @@ public class Accounting  implements Serializable{
     public TransactionBuy getPurchaseAt(String purchase_id){
         return purchase.get(purchase_id);
     }
-    
+    /**
+     * Adds a transaction to the list. Uses transaction ID as key
+     * @param sale the transaction to be added
+     */
     public void addSale(TransactionSell sale){
         this.sale.put(sale.getId(), sale);
         moneyOwned+=sale.getPaid();
@@ -72,16 +76,23 @@ public class Accounting  implements Serializable{
     public HashMap<LocalDate, Transaction> getOwnerCashFlow() {
         return ownerCashFlow;
     }
-
+    
     public void setOwnerCashFlow(HashMap<LocalDate, Transaction> ownerCashFlow) {
         this.ownerCashFlow=ownerCashFlow;
     }
     
+    /**
+     * Method to allow owner to add money without any purchase. Uses date as key
+     * @param transaction 
+     */
     public void ownerAddMoney(Transaction transaction){
         ownerCashFlow.put(transaction.getDate(), transaction);
         moneyOwned+=transaction.getPaid();
     }
-    
+    /**
+     * Method to allow owner to take money without any purchase. Uses date as key
+     * @param transaction 
+     */
     public void ownerTakeMoney(Transaction transaction){
         ownerCashFlow.put(transaction.getDate(), transaction);
         moneyOwned+=transaction.getPaid();
