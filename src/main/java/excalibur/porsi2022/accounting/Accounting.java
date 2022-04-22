@@ -6,6 +6,7 @@
 package excalibur.porsi2022.accounting;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +20,23 @@ import java.util.Map.Entry;
 public class Accounting  implements Serializable{
     private HashMap<String,TransactionBuy> purchase;
     private HashMap<String,TransactionSell> sale;
+    private HashMap<LocalDate,Transaction> ownerCashFlow;
+    private int moneyOwned;
     
     public Accounting(){
         purchase=new HashMap<>();
         sale=new HashMap<>();
+        ownerCashFlow=new HashMap<>();
     }
 
+    public int getMoneyOwned() {
+        return moneyOwned;
+    }
+
+    public void setMoneyOwned(int moneyOwned) {
+        this.moneyOwned=moneyOwned;
+    }
+    
     public HashMap<String, TransactionBuy> getPurchase() {
         return purchase;
     }
@@ -44,6 +56,7 @@ public class Accounting  implements Serializable{
     
     public void addPurchase(TransactionBuy purchase){
         this.purchase.put(purchase.getId(), purchase);
+        moneyOwned-=purchase.getPaid();
     }   
         
     public TransactionBuy getPurchaseAt(String purchase_id){
@@ -52,7 +65,26 @@ public class Accounting  implements Serializable{
     
     public void addSale(TransactionSell sale){
         this.sale.put(sale.getId(), sale);
+        moneyOwned+=sale.getPaid();
         
+    }
+
+    public HashMap<LocalDate, Transaction> getOwnerCashFlow() {
+        return ownerCashFlow;
+    }
+
+    public void setOwnerCashFlow(HashMap<LocalDate, Transaction> ownerCashFlow) {
+        this.ownerCashFlow=ownerCashFlow;
+    }
+    
+    public void ownerAddMoney(Transaction transaction){
+        ownerCashFlow.put(transaction.getDate(), transaction);
+        moneyOwned+=transaction.getPaid();
+    }
+    
+    public void ownerTakeMoney(Transaction transaction){
+        ownerCashFlow.put(transaction.getDate(), transaction);
+        moneyOwned+=transaction.getPaid();
     }
     
     public TransactionSell getSaleAt(String sale_id){

@@ -22,7 +22,7 @@ public class Products_Sell extends Inventory {
         stock[2]=new GulaSell(0);
         stock[3]=new MinyakSell(0);
         stock[4]=new TeriguSell(0);
-    }    
+    }   
 
 
 //    public void addStock(Product product){

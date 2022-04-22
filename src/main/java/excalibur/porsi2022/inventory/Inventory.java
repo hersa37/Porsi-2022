@@ -5,6 +5,7 @@
 
 package excalibur.porsi2022.inventory;
 
+import excalibur.porsi2022.accounting.LocaleFormatting;
 import excalibur.porsi2022.inventory.buy.*;
 import java.io.Serializable;
 
@@ -67,10 +68,13 @@ public class Inventory implements Serializable {
         stock[4].reduceAmount(terigu);
     }
     
+    
     public String priceList(){
         String print="Price List\n===============\n"+"Barang\t"+"Harga/unit";
         for(int i=0;i<ITEM_TYPES;i++){
-            print+="\n"+stock[i].getItemType()+"\t"+stock[i].getPricePerUnit();
+            print+="\n"+stock[i].getItemType()+"\t"
+                    +LocaleFormatting.currency(stock[i].getPricePerUnit())
+                    +stock[i].getUnit();
         }        
         return print;
     }
@@ -82,6 +86,7 @@ public class Inventory implements Serializable {
         }
         return total;
     }
+    
     
     @Override
     public String toString(){

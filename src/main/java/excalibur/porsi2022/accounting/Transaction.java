@@ -25,7 +25,7 @@ public class Transaction implements Serializable {
     protected LocalDate date;
 
     
-    protected Transaction(People person, Inventory products, int paid){
+    public Transaction(People person, Inventory products, int paid){
         this.person=person;
         this.products=products;
         this.paid=paid;
@@ -48,6 +48,14 @@ public class Transaction implements Serializable {
     public void setProducts(Inventory products) {
         this.products=products;
         totalCost=getTotalCost();
+    }
+
+    public int getPaid() {
+        return paid;
+    }
+
+    public void setPaid(int paid) {
+        this.paid=paid;
     }
 
     public int getTotalCost() {

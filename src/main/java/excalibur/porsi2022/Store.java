@@ -8,6 +8,7 @@ package excalibur.porsi2022;
 import excalibur.porsi2022.accounting.people.*;
 import excalibur.porsi2022.accounting.*;
 import excalibur.porsi2022.inventory.Inventory;
+import excalibur.porsi2022.inventory.Product;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -99,6 +100,17 @@ public class Store implements Serializable{
         customers.add(customer);
     }
     
+    public String listCustomer(){
+        String print="ID\t\tNama\tNo. telp\tAlamat" ;
+        for(int i=0;i<customers.size();i++){
+            print+="\n"+customers.get(i).getId()+"\t"
+                    +customers.get(i).getName()+"\t"
+                    +customers.get(i).getPhone()+"\t\t"
+                    +customers.get(i).getAddress();
+        }
+        return print;
+    }
+    
     public void addSupplier(Supplier supplier){
         suppliers.add(supplier);
     }
@@ -115,11 +127,12 @@ public class Store implements Serializable{
     public void removeCustomer(String nameOrID){
         Customer temp=findCustomer(nameOrID);
         if(temp==null){
-            System.out.println("No such customer");
+            System.out.println("Tidak ditemukan");
         } else {
             customers.remove(temp);
         }
     }
+    
     public Supplier findSupplier(String nameOrID){
         for(Supplier supplier:suppliers) {
             if (supplier.getName().equals(nameOrID) || supplier.getId().equals(nameOrID)){
@@ -129,6 +142,14 @@ public class Store implements Serializable{
         return null;
     }
     
+    public void removeSupplier(String nameOrID){
+        Supplier temp=findSupplier(nameOrID);
+        if(temp==null){
+            System.out.println("Tidak ditemukan");
+        } else {
+            suppliers.remove(temp);
+        }
+    }
 //    public boolean isCustomerInList(Customer customer){
 //        return customers.contains(customer);
 //    }
@@ -141,12 +162,71 @@ public class Store implements Serializable{
         this.suppliers=suppliers;
     }    
     
-    public void sell(TransactionSell newSell){
-        accountingBook.addSale(newSell);        
+    public String listSupplier(){
+        String print="ID\t\tNama\tNo. telp\tAlamat" ;
+        for(int i=0;i<suppliers.size();i++){
+            print+="\n"+suppliers.get(i).getId()+"\t"
+                    +suppliers.get(i).getName()+"\t"
+                    +suppliers.get(i).getPhone()+"\t\t"
+                    +suppliers.get(i).getAddress();
+        }
+        return print;
     }
+    
+    public boolean isInStock(Products_Sell products){
+        for(int i=0;i<Inventory.ITEM_TYPES;i++){
+            if(inventory.getStock()[i].getAmount()<products.getStock()[i].getAmount()){
+                System.out.println(inventory.getStock()[i].getItemType()+" tidak cukup. Sisa "
+                        +inventory.getStock()[i].getAmount());
+                return false;
+            }    
+        }
+        return true;
+    }
+    
+    public boolean isEnoughMoney(Products_Buy newBuy){
+        if(accountingBook.getMoneyOwned()<newBuy.getTotalPrice()){
+            System.out.println("Uang tidak cukup. Sisa "+
+                    LocaleFormatting.currency(accountingBook.getMoneyOwned()));
+            return false;
+        }
+        return true;
+    }
+    
+    public void sell(TransactionSell newSell){
+        accountingBook.addSale(newSell);
+        Product[] p=newSell.getProducts().getStock();
+        
+        inventory.reduceStock(p[0].getAmount()
+                , p[1].getAmount()
+                , p[2].getAmount()
+                , p[3].getAmount()
+                , p[4].getAmount());
+    }
+    
     
     public void buy(TransactionBuy newBuy){
         accountingBook.addPurchase(newBuy);
+        Product[] p=newBuy.getProducts().getStock();
+        
+        inventory.addStock(p[0].getAmount()
+                , p[1].getAmount()
+                , p[2].getAmount()
+                , p[3].getAmount()
+                , p[4].getAmount());
+    }
+    
+    public void addMoney(int money){
+        Transaction temp=new Transaction(owner, new Inventory(), money);
+        temp.setPaid(money);
+        accountingBook.ownerAddMoney(temp);
+    }
+    
+    public void takeMoney(int money){
+        Transaction temp=new Transaction(owner, new Inventory(), money);
+        temp.setPaid(-money);
+        accountingBook.ownerTakeMoney(temp);
+        
     }
     
     public void setFileName(String fileName){
@@ -161,5 +241,7 @@ public class Store implements Serializable{
     public String toString(){
         return storeName+";"+owner.toString();
     }
+    
+    
        
 }
