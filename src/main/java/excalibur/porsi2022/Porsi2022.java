@@ -23,7 +23,7 @@ public class Porsi2022 {
                              "\n                   -excalibur-                  "+
                              "\n================================================");
             System.out.println("                      -Menu-                    ");
-            System.out.println("1. Load toko\n2. Buat Toko baru");
+            System.out.println("1. Load Toko\n2. Buat Toko Baru");
             System.out.print("Input: ");
             inp=input.nextInt();
         }while(inp!=1 && inp !=2);
@@ -31,8 +31,9 @@ public class Porsi2022 {
         switch(inp) {
             case 1: 
                 do{
-                    do{
-                        System.out.print("Nama toko:");
+                    do{ 
+                        System.out.println(" \t\t  # Load Toko #\n");
+                        System.out.print("Cari nama toko\t:");
                         String namaToko=input.next();                    
                         toko=(Store) FileManagement.read(namaToko);
                         if(toko==null){
@@ -62,7 +63,7 @@ public class Porsi2022 {
         int opsi;
         do{            
             do{
-                System.out.println("Menu Utama\n====================");
+            System.out.println("                    -Menu Utama-                ");
                 System.out.println("1. Penjualan\n"
                         + "2. Pembelian\n"
                         + "3. Daftar harga barang\n"
@@ -104,6 +105,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;     
         
+        System.out.println(" \t\t  # Penjualan #\n");
         System.out.println("1. Customer baru\n2. Customer lama");
         inp=input.nextInt();
         TransactionSell transactionSell;
@@ -165,7 +167,7 @@ public class Porsi2022 {
 
         do{            
             do{
-                System.out.println("Jumlah barang penjualan:");
+                System.out.println("\nJumlah barang penjualan:");
 
                 System.out.print("Beras\t: ");        
                 int beras=input.nextInt();
@@ -177,8 +179,9 @@ public class Porsi2022 {
                 int minyak=input.nextInt();
                 System.out.print("Terigu\t: ");
                 int terigu=input.nextInt();
-                products_Sell.addStock(beras, garam, gula, minyak, terigu);          
-                System.out.println("Total:"+LocaleFormatting.currency(products_Sell.getTotalPrice()));
+                products_Sell.addStock(beras, garam, gula, minyak, terigu);
+                System.out.println("_________________________");
+                System.out.println("Total\t: "+LocaleFormatting.currency(products_Sell.getTotalPrice()));
                 check=toko.isInStock(products_Sell);
                 if(!check){
                     System.out.println("Lanjut? (y/n)");
@@ -201,6 +204,7 @@ public class Porsi2022 {
     public static void pembelian(Store toko){
          Scanner input=new Scanner(System.in);
         int inp;     
+        System.out.println(" \t\t  # Pembelian #\n");
         System.out.println("1. Supplier baru\n2. Supplier lama");
         System.out.print("Input: ");
         inp=input.nextInt();
@@ -292,6 +296,7 @@ public class Porsi2022 {
     }
     
     public static void daftarHarga(Store toko){
+        System.out.println(" \t\t  # Daftar Harga Barang #\n");
         System.out.println("Harga beli");
         System.out.println(toko.getBuyPrice());
         System.out.println("");
@@ -301,15 +306,15 @@ public class Porsi2022 {
     
     public static Store tokoBaru(){
         Scanner input=new Scanner(System.in);
-        System.out.println("Toko Baru\n=========");
+        System.out.println(" \t  # Buat Toko Baru #\n");
         System.out.print("Nama toko\t:");
         String storeName=input.next();
         System.out.print("Nama pemilik\t:");
         String name=input.next();
         System.out.print("");
-        System.out.print("No. telp pemilik:");
+        System.out.print("No. telp\t\t:");
         String phone=input.next();
-        System.out.print("Alamat pemilik\t:");
+        System.out.print("Alamat toko\t:");
         String address=input.next();
         Owner pemilik=new Owner(name, phone, address);
         
@@ -320,7 +325,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;
         do{
-            System.out.println("\nData Customer\n===================");
+            System.out.println(" \t\t  # Penjualan #\n");
             System.out.println("1. Tambah customer\n2. Hapus customer\n3. Edit customer\n4. Daftar customer\n5. Kembali");
             System.out.print("Input: ");
             inp=input.nextInt();
