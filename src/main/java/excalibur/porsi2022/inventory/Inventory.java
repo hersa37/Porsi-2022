@@ -92,7 +92,7 @@ public class Inventory implements Serializable {
      * @return the formatted price list
      */
     public String priceList(){
-        String print="Price List\n===============\n"+"Barang\t"+"Harga/unit";
+        String print="Price List\n===============\n"+"Barang\t"+"Harga/unit\n";
         for(int i=0;i<ITEM_TYPES;i++){
             print+="\n"+stock[i].getItemType()+"\t"
                     +LocaleFormatting.currency(stock[i].getPricePerUnit())

@@ -108,13 +108,13 @@ public class Porsi2022 {
     
     public static Store tokoBaru(){
         Scanner input=new Scanner(System.in);
-        System.out.println(" \t  # Buat Toko Baru #\n");
+        System.out.println("\n\t  # Buat Toko Baru #\n");
         System.out.print("Nama toko\t:");
         String storeName=input.next();
         System.out.print("Nama pemilik\t:");
         String name=input.next();
         System.out.print("");
-        System.out.print("No. telp\t:");
+        System.out.print("No. telp\t\t:");
         String phone=input.next();
         System.out.print("Alamat toko\t:");
         String address=input.next();
