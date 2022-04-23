@@ -94,13 +94,14 @@ public class Transaction implements Serializable {
     }
     
     public String toString(String peopleType, Inventory products){
-        return"{ID: "+id
+        return"\n{ID: "+id
                 +"\n"+peopleType+": "+person
                 +"\nBarang-barang: \n"+products.toString()
                 +"=================================================\n"
                 +"Harga total\t\t:\t"+LocaleFormatting.currency(products.getTotalPrice())
                 +"\nDibayar\t\t\t:\t"+LocaleFormatting.currency(paid)
-                +"\nSisa Pembayaran\t:\t"+LocaleFormatting.currency(getPaymentRemain());                
+                +"\nSisa Pembayaran\t:\t"+LocaleFormatting.currency(getPaymentRemain())
+                +"\n\n";                
 //        String print="{";
 //        for(int i=0; i<products.getStock().length;i++){
 //            print+=products.getStock()[i].toString();
