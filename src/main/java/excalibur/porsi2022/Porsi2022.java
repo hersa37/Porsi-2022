@@ -346,8 +346,8 @@ public class Porsi2022 {
         int inp;
         do{
             System.out.println("\t\t   # Pembukuan #\n");
-            System.out.println("1. Sejarah penjualan"
-                    + "\n2. Sejarah pembelian"
+            System.out.println("1. Riwayat penjualan"
+                    + "\n2. Riwayat pembelian"
                     + "\n3. Setor uang"
                     + "\n4. Tarik uang"
                     + "\n5. Saldo"
@@ -358,11 +358,11 @@ public class Porsi2022 {
             
             switch(inp){
                 case 1:
-                    System.out.println("\n- Sejarah Penjualan");
+                    System.out.println("\n- Riwayat Penjualan");
                     System.out.println(toko.getAccountingBook().getSale());
                     break;
                 case 2:;
-                    System.out.println("\n- Sejarah Pembelian");
+                    System.out.println("\n- Riwayat Pembelian");
                     System.out.println(toko.getAccountingBook().getPurchase());
                     break;
                 case 3:;
