@@ -9,20 +9,21 @@ import java.io.Serializable;
 
 /**
  * A Class for different people used in the program
+ *
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class People implements Serializable{
+public class People implements Serializable {
     protected String id;
     protected String name;
     protected String phone;
     protected String address;
 
     protected People(String name, String phone, String address) {
-        this.name=name;
-        this.phone=phone;
-        this.address=address;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
     }
 
     public String getId() {
@@ -30,7 +31,7 @@ public class People implements Serializable{
     }
 
     public void setId(String id) {
-        this.id=id;
+        this.id = id;
     }
 
     public String getName() {
@@ -38,7 +39,7 @@ public class People implements Serializable{
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     public String getPhone() {
@@ -46,7 +47,7 @@ public class People implements Serializable{
     }
 
     public void setPhone(String phone) {
-        this.phone=phone;
+        this.phone = phone;
     }
 
     public String getAddress() {
@@ -54,18 +55,18 @@ public class People implements Serializable{
     }
 
     public void setAddress(String address) {
-        this.address=address;
+        this.address = address;
     }
-    
+
     @Override
-    public String toString(){
-        return "{Type: "+this.getClass().getSimpleName()
-                + "; ID: "+id
-                +"; Name: "+name
-                +"; Phone: "+phone
-                +"; Address: "+address
-                +"}";
+    public String toString() {
+        return "{Type: " + this.getClass().getSimpleName()
+                + "; ID: " + id
+                + "; Name: " + name
+                + "; Phone: " + phone
+                + "; Address: " + address
+                + "}";
     }
-    
-    
+
+
 }

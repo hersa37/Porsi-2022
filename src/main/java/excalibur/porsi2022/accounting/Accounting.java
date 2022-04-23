@@ -6,160 +6,111 @@
 package excalibur.porsi2022.accounting;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Class to store all the transactions of a store
+ *
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
-public class Accounting  implements Serializable{
-    private LinkedHashMap<String,TransactionBuy> purchase; //Inbound transaction
-    private LinkedHashMap<String,TransactionSell> sale; //Outbound transaction
-    private LinkedHashMap<LocalDate,Transaction> ownerCashFlow; //List of times owner takes/adds money
+public class Accounting implements Serializable {
+    private static int index = 0;
+    private final LinkedHashMap<String, TransactionBuy> purchase; //Inbound transaction
+    private final LinkedHashMap<String, TransactionSell> sale; //Outbound transaction
+    private final LinkedHashMap<Integer, Transaction> ownerCashFlow; //List of times owner takes/adds money
     private int moneyOwned;
-    
-    public Accounting(){
-        purchase=new LinkedHashMap<>();
-        sale=new LinkedHashMap<>();
-        ownerCashFlow=new LinkedHashMap<>();
+
+    public Accounting() {
+        purchase = new LinkedHashMap<>();
+        sale = new LinkedHashMap<>();
+        ownerCashFlow = new LinkedHashMap<>();
+    }
+
+    private static int getIndex() {
+        return index++;
     }
 
     public int getMoneyOwned() {
         return moneyOwned;
     }
 
-    public void setMoneyOwned(int moneyOwned) {
-        this.moneyOwned=moneyOwned;
-    }
-    
     public LinkedHashMap<String, TransactionBuy> getPurchase() {
         return purchase;
-    }
-
-    public void setPurchase(LinkedHashMap<String, TransactionBuy> purchase) {
-        this.purchase=purchase;
     }
 
     public LinkedHashMap<String, TransactionSell> getSale() {
         return sale;
     }
 
-    public void setSale(LinkedHashMap<String, TransactionSell> sale) {
-        this.sale=sale;
-    }
-    
     /**
      * Adds a transaction to the list. Uses transaction ID as key
+     *
      * @param purchase the transaction to be added
      */
-    public void addPurchase(TransactionBuy purchase){
+    public void addPurchase(TransactionBuy purchase) {
         this.purchase.put(purchase.getId(), purchase);
-        moneyOwned-=purchase.getPaid();
-    }   
-        
-    public TransactionBuy getPurchaseAt(String purchase_id){
-        return purchase.get(purchase_id);
-    }
-    /**
-     * Adds a transaction to the list. Uses transaction ID as key
-     * @param sale the transaction to be added
-     */
-    public void addSale(TransactionSell sale){
-        this.sale.put(sale.getId(), sale);
-        moneyOwned+=sale.getPaid();
-        
+        moneyOwned -= purchase.getPaid();
     }
 
-    public LinkedHashMap<LocalDate, Transaction> getOwnerCashFlow() {
-        return ownerCashFlow;
+    /**
+     * Adds a transaction to the list. Uses transaction ID as key
+     *
+     * @param sale the transaction to be added
+     */
+    public void addSale(TransactionSell sale) {
+        this.sale.put(sale.getId(), sale);
+        moneyOwned += sale.getPaid();
+
     }
-    
-    public void setOwnerCashFlow(LinkedHashMap<LocalDate, Transaction> ownerCashFlow) {
-        this.ownerCashFlow=ownerCashFlow;
+
+    public String getOwnerCashFlowString() {
+        String print = "\nTanggal\t\tJumlah";
+        for (Map.Entry<Integer, Transaction> tr : ownerCashFlow.entrySet()) {
+            print += "\n" + tr.getValue().toStringCash();
+        }
+        return print;
     }
-    
+
     /**
      * Method to allow owner to add money without any purchase. Uses date as key
-     * @param transaction 
+     *
+     * @param transaction
      */
-    public void ownerAddMoney(Transaction transaction){
-        ownerCashFlow.put(transaction.getDate(), transaction);
-        moneyOwned+=transaction.getPaid();
+    public void ownerAddMoney(Transaction transaction) {
+        ownerCashFlow.put(getIndex(), transaction);
+        moneyOwned += transaction.getPaid();
     }
+
     /**
      * Method to allow owner to take money without any purchase. Uses date as key
-     * @param transaction 
+     *
+     * @param transaction
      */
-    public void ownerTakeMoney(Transaction transaction){
-        ownerCashFlow.put(transaction.getDate(), transaction);
-        moneyOwned+=transaction.getPaid();
+    public void ownerTakeMoney(Transaction transaction) {
+        ownerCashFlow.put(getIndex(), transaction);
+        moneyOwned += transaction.getPaid();
     }
-    
-    public TransactionSell getSaleAt(String sale_id){
-        return sale.get(sale_id);
-    }
-    
-//    public List<TransactionBuy> getPurchaseUnpaid(){
-//        List<TransactionBuy> purchaseUnpaid=new ArrayList<>();
-//        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
-//            if(!unpaid.getValue().isPaid()){
-//                purchaseUnpaid.add(unpaid.getValue());
-//            }
-//        }
-//        return purchaseUnpaid;
-//    }
-//    
-//    public List<TransactionSell> getSaleUnpaid(){
-//        List<TransactionSell> saleUnpaid=new ArrayList<>();
-//        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
-//            if(!unpaid.getValue().isPaid()){
-//                saleUnpaid.add(unpaid.getValue());
-//            }
-//        }
-//        return saleUnpaid;
-//    }
-//    
-//    public int getPUnpaidAmount(){
-//        int pUnpaid=0;
-//        for(Entry<String, TransactionBuy> unpaid:purchase.entrySet()){
-//            if(unpaid.getValue().isPaid()){
-//                pUnpaid+=unpaid.getValue().getPaymentRemain();
-//            }
-//        }
-//        return pUnpaid;
-//    }
-//    
-//    public int getSUnpaidAmount(){
-//        int sUnpaid=0;
-//        for(Entry<String, TransactionSell> unpaid:sale.entrySet()){
-//            if(unpaid.getValue().isPaid()){
-//                sUnpaid+=unpaid.getValue().getPaymentRemain();
-//            }
-//        }
-//        return sUnpaid;
-//    }
-    
+
     @Override
-    public String toString(){
-        String print="Daftar Transaksi\n";
-        print+="Purcase list:";
-        for(String key:purchase.keySet()){
-            print+="\n"+key+":"+purchase.get(key).toString();
+    public String toString() {
+        String print = "Daftar Transaksi\n";
+        print += "Purcase list:";
+        for (String key : purchase.keySet()) {
+            print += "\n" + key + ":" + purchase.get(key).toString();
         }
-        print+="\n\n";        
-        print+="Sale list:";
-        for(String key:sale.keySet()){
-            print+="\nID: "+key+":\n"+sale.get(key).toString();
+        print += "\n\n";
+        print += "Sale list:";
+        for (String key : sale.keySet()) {
+            print += "\nID: " + key + ":\n" + sale.get(key).toString();
         }
 //        +"\n"
 //                +"Sale list:"+toString(sale);
         return print;
     }
-    
+
 //    public String toString(List list){
 //        String print="";
 //        for(Object temp:list){
@@ -167,7 +118,7 @@ public class Accounting  implements Serializable{
 //        }
 //        return print;
 //    }
-    
+
 //    public String toString(HashMap<String, Transaction> hashmap){
 //        String print="";
 //        for(String key:hashmap.keySet()){
@@ -175,6 +126,6 @@ public class Accounting  implements Serializable{
 //        }
 //        return print;
 //    }
-    
-    
+
+
 }

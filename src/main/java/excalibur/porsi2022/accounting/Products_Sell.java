@@ -5,24 +5,27 @@
 
 package excalibur.porsi2022.accounting;
 
-import excalibur.porsi2022.inventory.*;
+import excalibur.porsi2022.inventory.Inventory;
+import excalibur.porsi2022.inventory.Product;
 import excalibur.porsi2022.inventory.sell.*;
+
 /**
  * A list of bought items with its own price
+ *
  * @author echa
  * Bernardus Hersa Galih Prakoso - 215314018
  * Informatika - Universitas Sanata Dharma
  */
 public class Products_Sell extends Inventory {
-    
-    public Products_Sell(){
-        stock=new Product[ITEM_TYPES];
-        stock[0]=new BerasSell(0);
-        stock[1]=new GaramSell(0);
-        stock[2]=new GulaSell(0);
-        stock[3]=new MinyakSell(0);
-        stock[4]=new TeriguSell(0);
-    }   
+
+    public Products_Sell() {
+        stock = new Product[ITEM_TYPES];
+        stock[0] = new BerasSell(0);
+        stock[1] = new GaramSell(0);
+        stock[2] = new GulaSell(0);
+        stock[3] = new MinyakSell(0);
+        stock[4] = new TeriguSell(0);
+    }
 
 
 //    public void addStock(Product product){
@@ -38,8 +41,8 @@ public class Products_Sell extends Inventory {
 //    }
 
     @Override
-    public String toString(){
+    public String toString() {
         return super.toString("Sell");
     }
-    
+
 }
