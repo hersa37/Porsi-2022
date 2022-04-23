@@ -28,6 +28,6 @@ public class TransactionBuy extends Transaction {
     
     @Override
     public String toString(){
-        return super.toString("Customer", products);
+        return super.toString("Supplier", products);
     }    
 }

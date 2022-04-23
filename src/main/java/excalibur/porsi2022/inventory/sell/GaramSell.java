@@ -18,6 +18,6 @@ public class GaramSell extends GaramBuy{
     
     public GaramSell(int amount){
         super(amount);
-        super.setPricePerUnit(4500);
+        super.setPricePerUnit(5000);
     }
 }

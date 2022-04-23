@@ -100,7 +100,7 @@ public class Transaction implements Serializable {
                 +"=================================================\n"
                 +"Harga total\t\t:\t"+LocaleFormatting.currency(products.getTotalPrice())
                 +"\nDibayar\t\t\t:\t"+LocaleFormatting.currency(paid)
-                +"\nSisa Pembayaran\t:\t"+LocaleFormatting.currency(getPaymentRemain())
+                +"\nSisa Pembayaran\t\t:\t"+LocaleFormatting.currency(getPaymentRemain())
                 +"\n\n";                
 //        String print="{";
 //        for(int i=0; i<products.getStock().length;i++){

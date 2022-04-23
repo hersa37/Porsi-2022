@@ -8,6 +8,7 @@ package excalibur.porsi2022.accounting;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Class to store all the transactions of a store
@@ -16,15 +17,15 @@ import java.util.HashMap;
  * Informatika - Universitas Sanata Dharma
  */
 public class Accounting  implements Serializable{
-    private HashMap<String,TransactionBuy> purchase; //Inbound transaction
-    private HashMap<String,TransactionSell> sale; //Outbound transaction
-    private HashMap<LocalDate,Transaction> ownerCashFlow; //List of times owner takes/adds money
+    private LinkedHashMap<String,TransactionBuy> purchase; //Inbound transaction
+    private LinkedHashMap<String,TransactionSell> sale; //Outbound transaction
+    private LinkedHashMap<LocalDate,Transaction> ownerCashFlow; //List of times owner takes/adds money
     private int moneyOwned;
     
     public Accounting(){
-        purchase=new HashMap<>();
-        sale=new HashMap<>();
-        ownerCashFlow=new HashMap<>();
+        purchase=new LinkedHashMap<>();
+        sale=new LinkedHashMap<>();
+        ownerCashFlow=new LinkedHashMap<>();
     }
 
     public int getMoneyOwned() {
@@ -35,19 +36,19 @@ public class Accounting  implements Serializable{
         this.moneyOwned=moneyOwned;
     }
     
-    public HashMap<String, TransactionBuy> getPurchase() {
+    public LinkedHashMap<String, TransactionBuy> getPurchase() {
         return purchase;
     }
 
-    public void setPurchase(HashMap<String, TransactionBuy> purchase) {
+    public void setPurchase(LinkedHashMap<String, TransactionBuy> purchase) {
         this.purchase=purchase;
     }
 
-    public HashMap<String, TransactionSell> getSale() {
+    public LinkedHashMap<String, TransactionSell> getSale() {
         return sale;
     }
 
-    public void setSale(HashMap<String, TransactionSell> sale) {
+    public void setSale(LinkedHashMap<String, TransactionSell> sale) {
         this.sale=sale;
     }
     
@@ -73,11 +74,11 @@ public class Accounting  implements Serializable{
         
     }
 
-    public HashMap<LocalDate, Transaction> getOwnerCashFlow() {
+    public LinkedHashMap<LocalDate, Transaction> getOwnerCashFlow() {
         return ownerCashFlow;
     }
     
-    public void setOwnerCashFlow(HashMap<LocalDate, Transaction> ownerCashFlow) {
+    public void setOwnerCashFlow(LinkedHashMap<LocalDate, Transaction> ownerCashFlow) {
         this.ownerCashFlow=ownerCashFlow;
     }
     

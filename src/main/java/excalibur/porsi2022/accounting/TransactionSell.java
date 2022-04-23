@@ -30,7 +30,7 @@ public class TransactionSell extends Transaction{
     
     @Override
     public String toString(){
-        return super.toString("Supplier", products);
+        return super.toString("Customer", products);
     }
     
     

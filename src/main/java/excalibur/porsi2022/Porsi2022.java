@@ -114,7 +114,7 @@ public class Porsi2022 {
         System.out.print("Nama pemilik\t:");
         String name=input.next();
         System.out.print("");
-        System.out.print("No. telp\t\t:");
+        System.out.print("No. telp\t:");
         String phone=input.next();
         System.out.print("Alamat toko\t:");
         String address=input.next();
@@ -207,7 +207,7 @@ public class Porsi2022 {
             int minyak=input.nextInt();
             System.out.print(" Terigu\t: ");
             int terigu=input.nextInt();
-            products_Sell.addStock(beras, garam, gula, minyak, terigu);
+            products_Sell.setStock(beras, garam, gula, minyak, terigu);
             System.out.println("_________________________");
             System.out.println("Total\t: "+LocaleFormatting.currency(products_Sell.getTotalPrice()));
             if((toko.isInStock(products_Sell))){
@@ -220,7 +220,7 @@ public class Porsi2022 {
                 if(input.next().equals("y")){
                     return transactionSell;
                 }
-            }else{
+            }else{                
                 System.out.print("Masukkan data ulang? (y/n):");
                 check=input.next();                 
             }                      
@@ -269,7 +269,6 @@ public class Porsi2022 {
                         }
                         break;
             }
-            FileManagement.write(toko, toko.getFileName());
         }while(inp==1 || inp==2);
     }
     
@@ -313,7 +312,7 @@ public class Porsi2022 {
             int minyak=input.nextInt();
             System.out.print("Terigu\t: ");
             int terigu=input.nextInt();
-            product_buy.addStock(beras, garam, gula, minyak, terigu);            
+            product_buy.setStock(beras, garam, gula, minyak, terigu);            
             System.out.println("Total\t:"+LocaleFormatting.currency(product_buy.getTotalPrice()));
             if(toko.isEnoughMoney(product_buy)){
                 System.out.print("Pembayaran: ");

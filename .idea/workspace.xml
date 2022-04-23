@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b82a72cd-b80c-40b3-976f-0b2ff23ffde6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Porsi.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/Porsi.vpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/excalibur/porsi2022/accounting/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/excalibur/porsi2022/accounting/Transaction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,14 +30,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/echa/College/Semester 2/Porsi_Coding2022/Porsi-2022"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/echa/College/Semester 2/Porsi_Coding2022/Porsi-2022&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Porsi2022" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="excalibur.porsi2022.Porsi2022" />
@@ -67,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650630910575</updated>
       <workItem from="1650630914030" duration="1821000" />
+      <workItem from="1650692375263" duration="116000" />
     </task>
     <servers />
   </component>
