@@ -148,7 +148,7 @@ public class Porsi2022 {
 
                 case 2:
                     Customer oldCustomer;
-
+                    System.out.println("\n Customer Lama \n===============");
                     System.out.print("Cari nama/ID: ");
                     oldCustomer=toko.findCustomer(input.next());
                     if(oldCustomer!=null){
@@ -172,7 +172,7 @@ public class Porsi2022 {
         Customer newCustomer;
         Scanner input=new Scanner(System.in);
         do{
-            System.out.println("\nData Customer Baru \n===============");
+            System.out.println("\n Customer Baru \n===============");
             System.out.print("Nama\t:");
             String name=input.next();
             System.out.print("No.Telp\t:");
@@ -437,13 +437,12 @@ public class Porsi2022 {
                     String check="n";
                     do{
                         System.out.println("\nEdit Customer \n===============");
-                        System.out.println("Cari customer:");
-                        System.out.print("Nama/ID: ");
+                        System.out.println("Cari customer(nama/id) : ");
                         temp=toko.findCustomer(input.next());
                         if(temp!=null){
                             int i;
                             do{
-                                System.out.println("Ganti atribut:");
+                                System.out.println("\nGanti atribut:");
                                 System.out.println("1. Nama\n"
                                         + "2. No. Telp\n"
                                         + "3. Alamat\n"
@@ -528,13 +527,13 @@ public class Porsi2022 {
                     Supplier temp;
                     String check="n";
                     do{
-                        System.out.println("Cari Supplier\t:");
-                        System.out.print("Nama/ID\t\t: ");
+                        System.out.println("\nEdit Supplier \n===============");
+                        System.out.println("Cari Supplier(nama/id) : ");
                         temp=toko.findSupplier(input.next());
                         if(temp!=null){
                             int i;
                             do{
-                                System.out.println("Ganti atribut:");
+                                System.out.println("\nGanti atribut:");
                                 System.out.println("1. Nama\n"
                                         + "2. No. Telp\n"
                                         + "3. Alamat\n"
