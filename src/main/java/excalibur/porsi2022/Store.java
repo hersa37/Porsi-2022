@@ -109,7 +109,7 @@ public class Store implements Serializable{
      * @return the string of formatted customer list
      */
     public String listCustomer(){
-        String print="ID\t\tNama\tNo. telp\tAlamat" ;
+        String print="ID\t\tNama\tNo. telp\t\tAlamat" ;
         for(int i=0;i<customers.size();i++){
             print+="\n"+customers.get(i).getId()+"\t"
                     +customers.get(i).getName()+"\t"
@@ -193,9 +193,9 @@ public class Store implements Serializable{
      * @return the supplier in a formatted string
      */
     public String listSupplier(){
-        String print="ID\t\tNama\tNo. telp\tAlamat" ;
+        String print="ID\t\tNama\tNo. telp\t\tAlamat" ;
         for(int i=0;i<suppliers.size();i++){
-            print+="\n"+suppliers.get(i).getId()+"\t"
+            print+="\n"+suppliers.get(i).getId()+"\t\t"
                     +suppliers.get(i).getName()+"\t"
                     +suppliers.get(i).getPhone()+"\t\t"
                     +suppliers.get(i).getAddress();

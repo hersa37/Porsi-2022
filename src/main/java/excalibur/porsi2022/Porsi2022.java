@@ -99,6 +99,7 @@ public class Porsi2022 {
                     pembukuan(toko);
                     break;
                 case 7:
+                    System.out.println("\n\t\t   # Inventory #\n");
                     System.out.print(toko.getInventory().toString("Invntory"));
                     break;
             }
@@ -171,7 +172,6 @@ public class Porsi2022 {
         Customer newCustomer;
         Scanner input=new Scanner(System.in);
         do{
-            System.out.println("-------------------------\n");
             System.out.println("\nData Customer Baru \n===============");
             System.out.print("Nama\t:");
             String name=input.next();
@@ -211,7 +211,7 @@ public class Porsi2022 {
             System.out.println("_________________________");
             System.out.println("Total\t: "+LocaleFormatting.currency(products_Sell.getTotalPrice()));
             if((toko.isInStock(products_Sell))){
-                System.out.println("Pembayaran: ");
+                System.out.print("Pembayaran: ");
                 int payment=input.nextInt();
                 transactionSell=new TransactionSell(customer, products_Sell, payment);
                 System.out.println(transactionSell);
@@ -232,7 +232,7 @@ public class Porsi2022 {
         Scanner input=new Scanner(System.in);
         int inp;     
         do{
-            System.out.println("\n\t\t   # Pembelian #\n");
+            System.out.println("\t\t   # Pembelian #\n");
             System.out.println("1. Supplier baru"
                     + "\n2. Supplier lama"
                     + "\n0. Kembali ke menu utama");
@@ -316,7 +316,7 @@ public class Porsi2022 {
             product_buy.addStock(beras, garam, gula, minyak, terigu);            
             System.out.println("Total\t:"+LocaleFormatting.currency(product_buy.getTotalPrice()));
             if(toko.isEnoughMoney(product_buy)){
-                System.out.println("Pembayaran: ");
+                System.out.print("Pembayaran: ");
                 int payment=input.nextInt();
                 transactionBuy=new TransactionBuy(supplier, product_buy, payment);
                 System.out.println(transactionBuy);
@@ -335,17 +335,17 @@ public class Porsi2022 {
     
     public static void daftarHarga(Store toko){
         System.out.println("\n\t\t   # Daftar Harga Barang #\n");
-        System.out.println("Harga beli");
+        System.out.println("- Harga beli");
         System.out.println(toko.getBuyPrice());
         System.out.println("");
-        System.out.println("Harga jual");
+        System.out.println("- Harga jual");
         System.out.println(toko.getSellPrice());
     }
     
     public static void pembukuan(Store toko){
         int inp;
         do{
-            System.out.println("\n\t\t   # Pembukuan #\n");
+            System.out.println("\t\t   # Pembukuan #\n");
             System.out.println("1. Sejarah penjualan"
                     + "\n2. Sejarah pembelian"
                     + "\n3. Setor uang"
@@ -358,15 +358,15 @@ public class Porsi2022 {
             
             switch(inp){
                 case 1:
-                    System.out.println("- Sejarah Penjualan");
+                    System.out.println("\n- Sejarah Penjualan");
                     System.out.println(toko.getAccountingBook().getSale());
                     break;
                 case 2:;
-                    System.out.println("- Sejarah Pembelian");
+                    System.out.println("\n- Sejarah Pembelian");
                     System.out.println(toko.getAccountingBook().getPurchase());
                     break;
                 case 3:;
-                    System.out.println("- Setor Uang");
+                    System.out.println("\n- Setor Uang");
                     System.out.print("Masukkan jumlah uang\t: ");
                     int uangM=input.nextInt();
                     toko.addMoney(uangM);
@@ -378,7 +378,7 @@ public class Porsi2022 {
                     int uangK;
                     String check;
                     do{
-                        System.out.println("- Tarik Uang");
+                        System.out.println("\n- Tarik Uang");
                         System.out.print("Masukkan jumlah uang\t: ");
                         uangK=input.nextInt();
                         if(toko.getAccountingBook().getMoneyOwned()>=uangK){
@@ -398,7 +398,7 @@ public class Porsi2022 {
                     
                     break;
                 case 5:
-                    System.out.println("- Saldo");
+                    System.out.println("\n- Saldo");
                     System.out.println("Saldo sekarang\t\t: "+
                     LocaleFormatting.currency(toko.getAccountingBook().getMoneyOwned()));
                     break;              
