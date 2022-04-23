@@ -360,11 +360,11 @@ public class Porsi2022 {
                     System.out.println("\n- Riwayat Penjualan");
                     System.out.println(toko.getAccountingBook().getSale());
                     break;
-                case 2:;
+                case 2:
                     System.out.println("\n- Riwayat Pembelian");
                     System.out.println(toko.getAccountingBook().getPurchase());
                     break;
-                case 3:;
+                case 3:
                     System.out.println("\n- Setor Uang");
                     System.out.print("Masukkan jumlah uang\t: ");
                     int uangM=input.nextInt();
@@ -582,9 +582,5 @@ public class Porsi2022 {
                 default:
             }
         }while(inp>=1 && inp<=4);
-    }
-    
-    public static void inventory(Store toko){
-        
     }
 }
