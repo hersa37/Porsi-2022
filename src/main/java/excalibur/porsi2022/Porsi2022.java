@@ -440,43 +440,48 @@ public class Porsi2022 {
                         System.out.println("Cari customer:");
                         System.out.print("Nama/ID: ");
                         temp=toko.findCustomer(input.next());
-                        if(temp==null){
+                        if(temp!=null){
+                            int i;
+                            do{
+                                System.out.println("Ganti atribut:");
+                                System.out.println("1. Nama\n"
+                                        + "2. No. Telp\n"
+                                        + "3. Alamat\n"
+                                        + "4. ID\n"
+                                        + "5. Kembali");
+                                i=input.nextInt();
+                                switch(i){
+                                    case 1:
+                                        System.out.print("Nama baru\t\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 2:
+                                        System.out.print("No. Telp baru\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 3:
+                                        System.out.print("Alamat baru\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 4:
+                                        System.out.print("ID baru\t\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                }
+                                FileManagement.write(toko, toko.getFileName());
+                            }while(i>=1 && i<=4);
+                        } else {
                             System.out.println("-Customer tidak ditemukan-");
                             System.out.print("Cari lagi? (y/n):");
                             check=input.next();
                             if(check.equals("n")){
                                 break;
                             }
-                        }                        
+                        }                                                
                     } while(check.equals("y"));
                     if(check.equals("n")){
                         break;
                     }
-                    int i;
-                    do{
-                        System.out.println("Ganti atribut:");
-                        System.out.println("1. Nama\n2. No. Telp\n3. Alamat\n4. ID\n5. Kembali");
-                        i=input.nextInt();
-                        switch(i){
-                            case 1:
-                                System.out.print("Nama baru\t\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 2:
-                                System.out.print("No. Telp baru\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 3:
-                                System.out.print("Alamat baru\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 4:
-                                System.out.print("ID baru\t\t:");
-                                temp.setName(input.next());
-                                break;
-                        }
-                        FileManagement.write(toko, toko.getFileName());
-                    }while(i>=1 && i<=4);
                     break;
                 case 4:
                     System.out.println("\nDaftar Customer \n===============");
@@ -526,7 +531,38 @@ public class Porsi2022 {
                         System.out.println("Cari Supplier\t:");
                         System.out.print("Nama/ID\t\t: ");
                         temp=toko.findSupplier(input.next());
-                        if(temp==null){
+                        if(temp!=null){
+                            int i;
+                            do{
+                                System.out.println("Ganti atribut:");
+                                System.out.println("1. Nama\n"
+                                        + "2. No. Telp\n"
+                                        + "3. Alamat\n"
+                                        + "4. ID\n"
+                                        + "5. Kembali");
+                                System.out.print("Input: ");
+                                i=input.nextInt();
+                                switch(i){
+                                    case 1:
+                                        System.out.print("Nama baru\t\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 2:
+                                        System.out.print("No. Telp baru\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 3:
+                                        System.out.print("Alamat baru\t:");
+                                        temp.setName(input.next());
+                                        break;
+                                    case 4:
+                                        System.out.print("ID baru\t\t:");
+                                        temp.setName(input.next());
+                                        break;                            
+                                }
+                                FileManagement.write(toko, toko.getFileName());                        
+                            }while(i>=1 && i<=4);
+                        } else {
                             System.out.println("-Supplier tidak ditemukan-");
                             System.out.print("Cari lagi? (y/n):");
                             check=input.next();
@@ -537,37 +573,7 @@ public class Porsi2022 {
                     } while(check.equals("y"));
                     if(check.equals("n")){
                         break;
-                    }
-                    int i;
-                    do{
-                        System.out.println("Ganti atribut:");
-                        System.out.println("1. Nama\n"
-                                + "2. No. Telp\n"
-                                + "3. Alamat\n"
-                                + "4. ID\n"
-                                + "5. Kembali");
-                        System.out.print("Input: ");
-                        i=input.nextInt();
-                        switch(i){
-                            case 1:
-                                System.out.print("Nama baru\t\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 2:
-                                System.out.print("No. Telp baru\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 3:
-                                System.out.print("Alamat baru\t:");
-                                temp.setName(input.next());
-                                break;
-                            case 4:
-                                System.out.print("ID baru\t\t:");
-                                temp.setName(input.next());
-                                break;                            
-                        }
-                        FileManagement.write(toko, toko.getFileName());                        
-                    }while(i>=1 && i<=4);
+                    }                    
                     break;
                 case 4:
                     System.out.println("\nDaftar Supplier \n===============");

@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b82a72cd-b80c-40b3-976f-0b2ff23ffde6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/excalibur/porsi2022/accounting/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/excalibur/porsi2022/accounting/Transaction.java" afterDir="false" />
-    </list>
+    <list default="true" id="b82a72cd-b80c-40b3-976f-0b2ff23ffde6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +66,7 @@
       <updated>1650630910575</updated>
       <workItem from="1650630914030" duration="1821000" />
       <workItem from="1650692375263" duration="116000" />
+      <workItem from="1650695200913" duration="31000" />
     </task>
     <servers />
   </component>
