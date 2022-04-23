@@ -76,7 +76,7 @@ public class Porsi2022 {
                         + "0. Keluar");
                 System.out.print("Input: ");
                 opsi = input.nextInt();
-                System.out.println("");
+                System.out.println();
             } while (opsi < 0 || opsi > 7);
 
             switch (opsi) {
@@ -338,8 +338,7 @@ public class Porsi2022 {
         System.out.println("\n\t\t   # Daftar Harga Barang #\n");
         System.out.println("- Harga beli");
         System.out.println(toko.getBuyPrice());
-        System.out.println("");
-        System.out.println("- Harga jual");
+        System.out.println("\n- Harga jual");
         System.out.println(toko.getSellPrice());
     }
 
